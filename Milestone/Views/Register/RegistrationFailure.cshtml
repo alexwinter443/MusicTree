@@ -1,0 +1,17 @@
+﻿@model Milestone.Models.UserModel
+
+<h4>Registration Failure</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <p>Please try registering again.</p>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

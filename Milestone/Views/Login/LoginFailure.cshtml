@@ -1,0 +1,11 @@
+﻿@model Milestone.Models.UserModel
+
+<div>
+    <h4>Login Failed</h4>
+    <hr />
+    <p>The username or password entered has not been registered. Please try again or register an account.</p>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
