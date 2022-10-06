@@ -1,0 +1,124 @@
+{
+  "AssetFile": [
+    {
+      "VideoTracks": [
+        {
+          "FourCC": "avc1",
+          "Profile": "Main",
+          "Level": "1.3",
+          "PixelFormat": "yuv420p",
+          "Width": "202",
+          "Height": "360",
+          "DisplayAspectRatioNumerator": 101.0,
+          "DisplayAspectRatioDenominator": 180.0,
+          "SampleAspectRatioNumerator": 1.0,
+          "SampleAspectRatioNumeratorSpecified": true,
+          "SampleAspectRatioDenominator": 1.0,
+          "SampleAspectRatioDenominatorSpecified": true,
+          "FrameRate": 30.0,
+          "Bitrate": 156004,
+          "BitrateSpecified": true,
+          "HasBFrames": 1,
+          "HasBFramesSpecified": true,
+          "Disposition": {
+            "Default": 1
+          },
+          "Metadata": [
+            {
+              "key": "creation_time",
+              "value": "2022-07-01T20:04:49.000000Z"
+            },
+            {
+              "key": "language",
+              "value": "und"
+            },
+            {
+              "key": "handler_name",
+              "value": "ISO Media file produced by Google Inc. Created on: 07/01/2022."
+            },
+            {
+              "key": "vendor_id",
+              "value": "[0][0][0][0]"
+            }
+          ],
+          "Id": 1,
+          "Codec": "h264",
+          "CodecLongName": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "TimeBase": "1/15360",
+          "NumberOfFrames": 900,
+          "NumberOfFramesSpecified": true,
+          "StartTime": "PT0S",
+          "Duration": "PT30S"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "SampleFormat": "fltp",
+          "ChannelLayout": "stereo",
+          "Channels": 2,
+          "SamplingRate": 44100,
+          "Bitrate": 128046,
+          "BitrateSpecified": true,
+          "BitsPerSampleSpecified": true,
+          "Disposition": {
+            "Default": 1
+          },
+          "Metadata": [
+            {
+              "key": "creation_time",
+              "value": "2022-07-01T20:04:49.000000Z"
+            },
+            {
+              "key": "language",
+              "value": "und"
+            },
+            {
+              "key": "handler_name",
+              "value": "ISO Media file produced by Google Inc. Created on: 07/01/2022."
+            },
+            {
+              "key": "vendor_id",
+              "value": "[0][0][0][0]"
+            }
+          ],
+          "Id": 2,
+          "Codec": "aac",
+          "CodecLongName": "AAC (Advanced Audio Coding)",
+          "TimeBase": "1/44100",
+          "NumberOfFrames": 1292,
+          "NumberOfFramesSpecified": true,
+          "StartTime": "PT0S",
+          "Duration": "PT30S"
+        }
+      ],
+      "Metadata": [
+        {
+          "key": "major_brand",
+          "value": "mp42"
+        },
+        {
+          "key": "minor_version",
+          "value": "0"
+        },
+        {
+          "key": "compatible_brands",
+          "value": "isommp42"
+        },
+        {
+          "key": "creation_time",
+          "value": "2022-07-01T20:04:49.000000Z"
+        }
+      ],
+      "Name": "paul.mp4",
+      "Uri": "https://capstonestorage7.blob.core.windows.net/asset-12a58f7a-82c8-4476-a5bb-4e69e53740d4/paul.mp4",
+      "Size": 1079419,
+      "Duration": "PT30S",
+      "NumberOfStreams": 2,
+      "FormatNames": "mov,mp4,m4a,3gp,3g2,mj2",
+      "FormatVerboseName": "QuickTime / MOV",
+      "StartTime": "PT0S",
+      "OverallBitRate": 287843,
+      "OverallBitRateSpecified": true
+    }
+  ]
+}

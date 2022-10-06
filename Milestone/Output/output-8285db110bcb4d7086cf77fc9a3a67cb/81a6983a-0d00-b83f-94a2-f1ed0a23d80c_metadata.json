@@ -1,0 +1,115 @@
+{
+  "AssetFile": [
+    {
+      "VideoTracks": [
+        {
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.1",
+          "PixelFormat": "yuv420p",
+          "Width": "1280",
+          "Height": "720",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "SampleAspectRatioNumerator": 1.0,
+          "SampleAspectRatioNumeratorSpecified": true,
+          "SampleAspectRatioDenominator": 1.0,
+          "SampleAspectRatioDenominatorSpecified": true,
+          "FrameRate": 29.970,
+          "Bitrate": 1222938,
+          "BitrateSpecified": true,
+          "HasBFramesSpecified": true,
+          "Disposition": {
+            "Default": 1
+          },
+          "Metadata": [
+            {
+              "key": "language",
+              "value": "und"
+            },
+            {
+              "key": "handler_name",
+              "value": "ISO Media file produced by Google Inc."
+            },
+            {
+              "key": "vendor_id",
+              "value": "[0][0][0][0]"
+            }
+          ],
+          "Id": 1,
+          "Codec": "h264",
+          "CodecLongName": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "TimeBase": "1/30000",
+          "NumberOfFrames": 850,
+          "NumberOfFramesSpecified": true,
+          "StartTime": "PT0S",
+          "Duration": "PT28.362S"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "SampleFormat": "fltp",
+          "ChannelLayout": "stereo",
+          "Channels": 2,
+          "SamplingRate": 44100,
+          "Bitrate": 128012,
+          "BitrateSpecified": true,
+          "BitsPerSampleSpecified": true,
+          "Disposition": {
+            "Default": 1
+          },
+          "Metadata": [
+            {
+              "key": "language",
+              "value": "eng"
+            },
+            {
+              "key": "handler_name",
+              "value": "ISO Media file produced by Google Inc."
+            },
+            {
+              "key": "vendor_id",
+              "value": "[0][0][0][0]"
+            }
+          ],
+          "Id": 2,
+          "Codec": "aac",
+          "CodecLongName": "AAC (Advanced Audio Coding)",
+          "TimeBase": "1/44100",
+          "NumberOfFrames": 1222,
+          "NumberOfFramesSpecified": true,
+          "StartTime": "PT0S",
+          "Duration": "PT28.375S"
+        }
+      ],
+      "Metadata": [
+        {
+          "key": "major_brand",
+          "value": "mp42"
+        },
+        {
+          "key": "minor_version",
+          "value": "0"
+        },
+        {
+          "key": "compatible_brands",
+          "value": "isommp42"
+        },
+        {
+          "key": "encoder",
+          "value": "Google"
+        }
+      ],
+      "Name": "rainyyboi.mp4",
+      "Uri": "https://capstonestorage7.blob.core.windows.net/asset-e27369d7-80bd-4178-91e9-f1ed49c05ab4/rainyyboi.mp4",
+      "Size": 4799799,
+      "Duration": "PT28.374S",
+      "NumberOfStreams": 2,
+      "FormatNames": "mov,mp4,m4a,3gp,3g2,mj2",
+      "FormatVerboseName": "QuickTime / MOV",
+      "StartTime": "PT0S",
+      "OverallBitRate": 1353294,
+      "OverallBitRateSpecified": true
+    }
+  ]
+}

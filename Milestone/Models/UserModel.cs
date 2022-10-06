@@ -6,10 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 /*
- * Alex Vergara and Kacey Morris
- * January 31, 2021
- * CST 247
- * Minesweeper Web Application
+ * Alex Vergara
+ * 4/24/2022
+ * cst 451
+ * Capstone
  * 
  * User Model which defines the properties and methods of a user.
  * 
@@ -20,6 +20,8 @@ namespace Milestone.Models
 {
     public class UserModel
     {
+        // for database storage
+        private int ID { get; set; }
         [Required]
         [DisplayName(@"First Name")]
         public string firstName { get; set; }
@@ -33,9 +35,6 @@ namespace Milestone.Models
 
         [DisplayName(@"Age")]
         public int age { get; set; }
-
-        [DisplayName(@"State")]
-        public string state { get; set; }
 
         [EmailAddress]
         [Required]

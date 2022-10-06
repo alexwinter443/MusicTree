@@ -9,6 +9,11 @@ using Milestone.Models;
 
 namespace Milestone.Controllers
 {
+    /* Alex Vergara
+    *  Capstone
+    *  4/24/2022
+    *  This is the controller for home actions
+    */
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

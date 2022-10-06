@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DotNet5Crud.Models.AudioFile>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Instrumentals</h1>
+
+<p style="text-align:right;margin-right:20px;">
+    <a class="btn btn-primary" asp-action="AddOrEdit">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Key)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BPM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+                <th>Edit</th>
+                <th>Details</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BPM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                <td class="text-center">
+                    <a asp-action="AddOrEdit" class="btn btn-primary"  asp-route-audioFileId ="@item.AudioFileId">Edit</a>
+                </td>
+                <td class="text-center">
+                    <a asp-action="Details" class="btn btn-info" asp-route-audioFileId="@item.AudioFileId">Details</a> 
+                </td>
+                <td class="text-center">
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-audioFileId ="@item.AudioFileId">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    </div>

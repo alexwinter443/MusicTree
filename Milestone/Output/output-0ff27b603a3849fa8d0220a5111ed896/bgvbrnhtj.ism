@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="clientManifestRelativePath" content="bgvbrnhtj.ismc" />
+    <meta name="formats" content="mp4-v3" />
+  </head>
+  <body>
+    <switch>
+      <audio src="bgvbrnhtj_180x180_AACAudio_63.mp4" systemBitrate="128004" systemLanguage="und">
+        <param name="systemBitrate" value="128004" valuetype="data" />
+        <param name="trackID" value="2" valuetype="data" />
+        <param name="trackName" value="aac_und_2_128004_2_1" valuetype="data" />
+        <param name="systemLanguage" value="und" valuetype="data" />
+        <param name="trackIndex" value="bgvbrnhtj_180x180_AACAudio_63_2.mpi" valuetype="data" />
+      </audio>
+      <video src="bgvbrnhtj_720x720_AACAudio_516.mp4" systemBitrate="516871">
+        <param name="systemBitrate" value="516871" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="bgvbrnhtj_720x720_AACAudio_516_1.mpi" valuetype="data" />
+      </video>
+      <video src="bgvbrnhtj_540x540_AACAudio_373.mp4" systemBitrate="373042">
+        <param name="systemBitrate" value="373042" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="bgvbrnhtj_540x540_AACAudio_373_1.mpi" valuetype="data" />
+      </video>
+      <video src="bgvbrnhtj_360x360_AACAudio_195.mp4" systemBitrate="195486">
+        <param name="systemBitrate" value="195486" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="bgvbrnhtj_360x360_AACAudio_195_1.mpi" valuetype="data" />
+      </video>
+      <video src="bgvbrnhtj_270x270_AACAudio_125.mp4" systemBitrate="125006">
+        <param name="systemBitrate" value="125006" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="bgvbrnhtj_270x270_AACAudio_125_1.mpi" valuetype="data" />
+      </video>
+      <video src="bgvbrnhtj_180x180_AACAudio_63.mp4" systemBitrate="63632">
+        <param name="systemBitrate" value="63632" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="bgvbrnhtj_180x180_AACAudio_63_1.mpi" valuetype="data" />
+      </video>
+    </switch>
+  </body>
+</smil>

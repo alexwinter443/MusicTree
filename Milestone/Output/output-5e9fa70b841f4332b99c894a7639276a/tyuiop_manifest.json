@@ -1,0 +1,194 @@
+{
+  "AssetFile": [
+    {
+      "Sources": [
+        {
+          "Name": "tyuiop_1280x720_AACAudio_1073.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.1",
+          "Width": "1280",
+          "Height": "720",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 29.970,
+          "Bitrate": 1073404,
+          "TargetBitrate": 1230000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128013,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "tyuiop_1280x720_AACAudio_1073.mp4",
+      "Size": 4292472,
+      "Duration": "PT28.416S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "tyuiop_960x540_AACAudio_681.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.1",
+          "Width": "960",
+          "Height": "540",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 29.970,
+          "Bitrate": 681100,
+          "TargetBitrate": 770000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128013,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "tyuiop_960x540_AACAudio_681.mp4",
+      "Size": 2901712,
+      "Duration": "PT28.416S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "tyuiop_640x360_AACAudio_359.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.0",
+          "Width": "640",
+          "Height": "360",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 29.970,
+          "Bitrate": 359116,
+          "TargetBitrate": 400000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128013,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "tyuiop_640x360_AACAudio_359.mp4",
+      "Size": 1760309,
+      "Duration": "PT28.416S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "tyuiop_480x270_AACAudio_227.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "2.1",
+          "Width": "480",
+          "Height": "270",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 29.970,
+          "Bitrate": 227488,
+          "TargetBitrate": 250000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128013,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "tyuiop_480x270_AACAudio_227.mp4",
+      "Size": 1293587,
+      "Duration": "PT28.416S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "tyuiop_320x180_AACAudio_118.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "1.3",
+          "Width": "320",
+          "Height": "180",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 29.970,
+          "Bitrate": 118752,
+          "TargetBitrate": 130000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128013,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "tyuiop_320x180_AACAudio_118.mp4",
+      "Size": 908031,
+      "Duration": "PT28.416S"
+    }
+  ]
+}

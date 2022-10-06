@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="clientManifestRelativePath" content="Sundown.ismc" />
+    <meta name="formats" content="mp4-v3" />
+  </head>
+  <body>
+    <switch>
+      <audio src="Sundown_180x180_AACAudio_63.mp4" systemBitrate="128004" systemLanguage="und">
+        <param name="systemBitrate" value="128004" valuetype="data" />
+        <param name="trackID" value="2" valuetype="data" />
+        <param name="trackName" value="aac_und_2_128004_2_1" valuetype="data" />
+        <param name="systemLanguage" value="und" valuetype="data" />
+        <param name="trackIndex" value="Sundown_180x180_AACAudio_63_2.mpi" valuetype="data" />
+      </audio>
+      <video src="Sundown_720x720_AACAudio_516.mp4" systemBitrate="516125">
+        <param name="systemBitrate" value="516125" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="Sundown_720x720_AACAudio_516_1.mpi" valuetype="data" />
+      </video>
+      <video src="Sundown_540x540_AACAudio_372.mp4" systemBitrate="372678">
+        <param name="systemBitrate" value="372678" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="Sundown_540x540_AACAudio_372_1.mpi" valuetype="data" />
+      </video>
+      <video src="Sundown_360x360_AACAudio_195.mp4" systemBitrate="195424">
+        <param name="systemBitrate" value="195424" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="Sundown_360x360_AACAudio_195_1.mpi" valuetype="data" />
+      </video>
+      <video src="Sundown_270x270_AACAudio_124.mp4" systemBitrate="124934">
+        <param name="systemBitrate" value="124934" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="Sundown_270x270_AACAudio_124_1.mpi" valuetype="data" />
+      </video>
+      <video src="Sundown_180x180_AACAudio_63.mp4" systemBitrate="63595">
+        <param name="systemBitrate" value="63595" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="Sundown_180x180_AACAudio_63_1.mpi" valuetype="data" />
+      </video>
+    </switch>
+  </body>
+</smil>

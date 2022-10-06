@@ -1,0 +1,52 @@
+﻿@model DotNet5Crud.Models.AudioFile
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deleting Audio File</h2>
+
+<h3>Would you like to continue?</h3>
+<div class="container p-3 my-3 border">
+    <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Key)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Key)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BPM)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BPM)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="AudioFileId" />
+                <input class="btn btn-primary" type="submit" value="Yes" />
+                <a class="btn btn-danger" asp-action="Index">No</a>
+            </form>
+
+ </div>

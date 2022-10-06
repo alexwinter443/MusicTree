@@ -1,0 +1,118 @@
+{
+  "AssetFile": [
+    {
+      "Sources": [
+        {
+          "Name": "ksifam_640x360_AACAudio_562.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.0",
+          "Width": "640",
+          "Height": "360",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 30.0,
+          "Bitrate": 562898,
+          "TargetBitrate": 560000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128096,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "ksifam_640x360_AACAudio_562.mp4",
+      "Size": 2253874,
+      "Duration": "PT25.835S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "ksifam_480x270_AACAudio_353.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "2.1",
+          "Width": "480",
+          "Height": "270",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 30.0,
+          "Bitrate": 353238,
+          "TargetBitrate": 350000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128096,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "ksifam_480x270_AACAudio_353.mp4",
+      "Size": 1579626,
+      "Duration": "PT25.835S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "ksifam_320x180_AACAudio_192.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "1.3",
+          "Width": "320",
+          "Height": "180",
+          "DisplayAspectRatioNumerator": 16.0,
+          "DisplayAspectRatioDenominator": 9.0,
+          "Framerate": 30.0,
+          "Bitrate": 192026,
+          "TargetBitrate": 190000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "eng",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128096,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "ksifam_320x180_AACAudio_192.mp4",
+      "Size": 1060862,
+      "Duration": "PT25.835S"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="clientManifestRelativePath" content="samantha.ismc" />
+    <meta name="formats" content="mp4-v3" />
+  </head>
+  <body>
+    <switch>
+      <audio src="samantha_102x180_AACAudio_103.mp4" systemBitrate="127999" systemLanguage="und">
+        <param name="systemBitrate" value="127999" valuetype="data" />
+        <param name="trackID" value="2" valuetype="data" />
+        <param name="trackName" value="aac_und_2_127999_2_1" valuetype="data" />
+        <param name="systemLanguage" value="und" valuetype="data" />
+        <param name="trackIndex" value="samantha_102x180_AACAudio_103_2.mpi" valuetype="data" />
+      </audio>
+      <video src="samantha_608x1080_AACAudio_1637.mp4" systemBitrate="1637237">
+        <param name="systemBitrate" value="1637237" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="samantha_608x1080_AACAudio_1637_1.mpi" valuetype="data" />
+      </video>
+      <video src="samantha_406x720_AACAudio_921.mp4" systemBitrate="921322">
+        <param name="systemBitrate" value="921322" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="samantha_406x720_AACAudio_921_1.mpi" valuetype="data" />
+      </video>
+      <video src="samantha_304x540_AACAudio_513.mp4" systemBitrate="513062">
+        <param name="systemBitrate" value="513062" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="samantha_304x540_AACAudio_513_1.mpi" valuetype="data" />
+      </video>
+      <video src="samantha_204x360_AACAudio_308.mp4" systemBitrate="308175">
+        <param name="systemBitrate" value="308175" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="samantha_204x360_AACAudio_308_1.mpi" valuetype="data" />
+      </video>
+      <video src="samantha_152x270_AACAudio_164.mp4" systemBitrate="164817">
+        <param name="systemBitrate" value="164817" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="samantha_152x270_AACAudio_164_1.mpi" valuetype="data" />
+      </video>
+      <video src="samantha_102x180_AACAudio_103.mp4" systemBitrate="103108">
+        <param name="systemBitrate" value="103108" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="samantha_102x180_AACAudio_103_1.mpi" valuetype="data" />
+      </video>
+    </switch>
+  </body>
+</smil>

@@ -1,4 +1,5 @@
 ﻿@model Milestone.Models.UserModel
+@using Microsoft.AspNetCore.Http
 
 <div>
     <h4>Login Failed</h4>
@@ -6,6 +7,5 @@
     <p>The username or password entered has not been registered. Please try again or register an account.</p>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Login</a>
 </div>

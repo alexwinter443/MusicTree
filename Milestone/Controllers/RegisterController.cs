@@ -8,10 +8,10 @@ using Milestone.Models;
 using Milestone.Views.Services;
 
 /*
- * Alex Vergara and Kacey Morris
- * January 31, 2021
- * CST 247
- * Minesweeper Web Application
+ * Alex Vergara
+ * 4/24/2022
+ * CST 451
+ * Capstone
  * 
  * Register Controller which directs the functions of the registration module. 
  * 
@@ -22,10 +22,9 @@ namespace Milestone.Controllers
 {
     public class RegisterController : Controller
     {
-
-
         public IActionResult Index()
         {
+            
             return View();
         }
 

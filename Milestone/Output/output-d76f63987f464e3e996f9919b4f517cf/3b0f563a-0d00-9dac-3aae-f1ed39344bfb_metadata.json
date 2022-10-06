@@ -1,0 +1,82 @@
+{
+  "AssetFile": [
+    {
+      "VideoTracks": [
+        {
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.1",
+          "PixelFormat": "yuv420p",
+          "Width": "608",
+          "Height": "1080",
+          "DisplayAspectRatioNumerator": 76.0,
+          "DisplayAspectRatioDenominator": 135.0,
+          "SampleAspectRatioNumerator": 1.0,
+          "SampleAspectRatioNumeratorSpecified": true,
+          "SampleAspectRatioDenominator": 1.0,
+          "SampleAspectRatioDenominatorSpecified": true,
+          "FrameRate": 29.970,
+          "Bitrate": 56465,
+          "BitrateSpecified": true,
+          "HasBFrames": 1,
+          "HasBFramesSpecified": true,
+          "Disposition": {
+            "Default": 1
+          },
+          "Metadata": [
+            {
+              "key": "creation_time",
+              "value": "2021-06-06T03:34:11.000000Z"
+            },
+            {
+              "key": "language",
+              "value": "und"
+            },
+            {
+              "key": "handler_name",
+              "value": "ISO Media file produced by Google Inc."
+            },
+            {
+              "key": "vendor_id",
+              "value": "[0][0][0][0]"
+            }
+          ],
+          "Id": 1,
+          "Codec": "h264",
+          "CodecLongName": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "TimeBase": "1/30000",
+          "StartTime": "PT0S",
+          "Duration": "PT57.524S"
+        }
+      ],
+      "Metadata": [
+        {
+          "key": "major_brand",
+          "value": "dash"
+        },
+        {
+          "key": "minor_version",
+          "value": "0"
+        },
+        {
+          "key": "compatible_brands",
+          "value": "iso6avc1mp41"
+        },
+        {
+          "key": "creation_time",
+          "value": "2021-06-06T03:34:11.000000Z"
+        }
+      ],
+      "Name": "qweqwe",
+      "Uri": "https://capstonestorage7.blob.core.windows.net/asset-f832ee82-c65a-4431-8595-f943223fdad9/qweqwe",
+      "Size": 6826635,
+      "Duration": "PT57.524S",
+      "NumberOfStreams": 1,
+      "FormatNames": "mov,mp4,m4a,3gp,3g2,mj2",
+      "FormatVerboseName": "QuickTime / MOV",
+      "StartTime": "PT0S",
+      "OverallBitRate": 949394,
+      "OverallBitRateSpecified": true
+    }
+  ]
+}

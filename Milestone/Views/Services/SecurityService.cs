@@ -1,15 +1,11 @@
-﻿using Milestone.Models;
+﻿using DotNet5Crud.Models;
+using Milestone.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 /*
- * Alex Vergara and Kacey Morris
- * January 31, 2021
- * CST 247
- * Minesweeper Web Application
- * 
  * Security Service which acts as a business service for the functions which require security. 
  * 
  * This is our own work as influenced by class time and examples. 
@@ -27,9 +23,24 @@ namespace Milestone.Views.Services
             return SecurityDAO.RegisterUser(user);
         }
 
-        public bool loginUser(UserModel user)
+        public int loginUser(UserModel user)
         {
             return SecurityDAO.findByUsernamePassword(user);
+        }
+
+        public List<AudioFile> GetAudioFiles(int userId)
+        {
+            return SecurityDAO.GetAudioFiles(userId);
+        }
+
+        public List<Comment> getComments(AudioFile audioFile)
+        {
+            return SecurityDAO.getAllComments(audioFile);
+        }
+
+        public bool deleteComment(int audioFileID)
+        {
+            return SecurityDAO.deleteComment(audioFileID);
         }
     }
 }

@@ -1,0 +1,72 @@
+﻿@model DotNet5Crud.Models.AudioFile
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container p-3 my-3 border" >
+    <h1> @ViewBag.PageName</h1>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <hr />
+            <form asp-action="AddOrEdit2" enctype = "multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @* @{ViewBag.IsEdit ??= true;}*@
+                @if (@ViewBag.IsEdit)
+                {
+                    <input type="hidden" asp-for="AudioFileId" />
+                }
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genre" class="control-label"></label>
+                    <input asp-for="Genre" class="form-control" />
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Key" class="control-label"></label>
+                    <input asp-for="Key" class="form-control" />
+                    <span asp-validation-for="Key" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BPM" class="control-label"></label>
+                    <input asp-for="BPM" class="form-control" />
+                    <span asp-validation-for="BPM" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                 <div class="form-group">
+                    <label class="col-form-label">Enter File Name For Save</label>
+                    <input asp-for="FileName" class="form-control" />
+                    <span asp-validation-for="FileName" class="text-danger"></span>
+                 </div>
+                
+                 <div class="form-group">
+                    <label class="col-form-label">Select File</label>
+                    <input asp-for="File" class="form-control" />
+                    <span asp-validation-for="File" class="text-danger"></span>
+                 </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Save" />
+                    <a class="btn btn-danger" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="clientManifestRelativePath" content="blart.ismc" />
+    <meta name="formats" content="mp4-v3" />
+  </head>
+  <body>
+    <switch>
+      <audio src="blart_102x180_AACAudio_103.mp4" systemBitrate="127999" systemLanguage="und">
+        <param name="systemBitrate" value="127999" valuetype="data" />
+        <param name="trackID" value="2" valuetype="data" />
+        <param name="trackName" value="aac_und_2_127999_2_1" valuetype="data" />
+        <param name="systemLanguage" value="und" valuetype="data" />
+        <param name="trackIndex" value="blart_102x180_AACAudio_103_2.mpi" valuetype="data" />
+      </audio>
+      <video src="blart_608x1080_AACAudio_1635.mp4" systemBitrate="1635762">
+        <param name="systemBitrate" value="1635762" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="blart_608x1080_AACAudio_1635_1.mpi" valuetype="data" />
+      </video>
+      <video src="blart_406x720_AACAudio_919.mp4" systemBitrate="919333">
+        <param name="systemBitrate" value="919333" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="blart_406x720_AACAudio_919_1.mpi" valuetype="data" />
+      </video>
+      <video src="blart_304x540_AACAudio_513.mp4" systemBitrate="513316">
+        <param name="systemBitrate" value="513316" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="blart_304x540_AACAudio_513_1.mpi" valuetype="data" />
+      </video>
+      <video src="blart_204x360_AACAudio_308.mp4" systemBitrate="308264">
+        <param name="systemBitrate" value="308264" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="blart_204x360_AACAudio_308_1.mpi" valuetype="data" />
+      </video>
+      <video src="blart_152x270_AACAudio_164.mp4" systemBitrate="164864">
+        <param name="systemBitrate" value="164864" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="blart_152x270_AACAudio_164_1.mpi" valuetype="data" />
+      </video>
+      <video src="blart_102x180_AACAudio_103.mp4" systemBitrate="103104">
+        <param name="systemBitrate" value="103104" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="blart_102x180_AACAudio_103_1.mpi" valuetype="data" />
+      </video>
+    </switch>
+  </body>
+</smil>

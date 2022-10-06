@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="clientManifestRelativePath" content="joe.ismc" />
+    <meta name="formats" content="mp4-v3" />
+  </head>
+  <body>
+    <switch>
+      <audio src="joe_102x180_AACAudio_101.mp4" systemBitrate="127999" systemLanguage="und">
+        <param name="systemBitrate" value="127999" valuetype="data" />
+        <param name="trackID" value="2" valuetype="data" />
+        <param name="trackName" value="aac_und_2_127999_2_1" valuetype="data" />
+        <param name="systemLanguage" value="und" valuetype="data" />
+        <param name="trackIndex" value="joe_102x180_AACAudio_101_2.mpi" valuetype="data" />
+      </audio>
+      <video src="joe_608x1080_AACAudio_1599.mp4" systemBitrate="1599366">
+        <param name="systemBitrate" value="1599366" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="joe_608x1080_AACAudio_1599_1.mpi" valuetype="data" />
+      </video>
+      <video src="joe_406x720_AACAudio_888.mp4" systemBitrate="888881">
+        <param name="systemBitrate" value="888881" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="joe_406x720_AACAudio_888_1.mpi" valuetype="data" />
+      </video>
+      <video src="joe_304x540_AACAudio_498.mp4" systemBitrate="498020">
+        <param name="systemBitrate" value="498020" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="joe_304x540_AACAudio_498_1.mpi" valuetype="data" />
+      </video>
+      <video src="joe_202x360_AACAudio_302.mp4" systemBitrate="302392">
+        <param name="systemBitrate" value="302392" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="joe_202x360_AACAudio_302_1.mpi" valuetype="data" />
+      </video>
+      <video src="joe_152x270_AACAudio_161.mp4" systemBitrate="161367">
+        <param name="systemBitrate" value="161367" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="joe_152x270_AACAudio_161_1.mpi" valuetype="data" />
+      </video>
+      <video src="joe_102x180_AACAudio_101.mp4" systemBitrate="101573">
+        <param name="systemBitrate" value="101573" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="joe_102x180_AACAudio_101_1.mpi" valuetype="data" />
+      </video>
+    </switch>
+  </body>
+</smil>

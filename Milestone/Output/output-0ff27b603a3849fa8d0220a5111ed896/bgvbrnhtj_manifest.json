@@ -1,0 +1,194 @@
+{
+  "AssetFile": [
+    {
+      "Sources": [
+        {
+          "Name": "bgvbrnhtj_720x720_AACAudio_516.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.1",
+          "Width": "720",
+          "Height": "720",
+          "DisplayAspectRatioNumerator": 1.0,
+          "DisplayAspectRatioDenominator": 1.0,
+          "Framerate": 25.0,
+          "Bitrate": 516871,
+          "TargetBitrate": 900000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "und",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128004,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "bgvbrnhtj_720x720_AACAudio_516.mp4",
+      "Size": 28426739,
+      "Duration": "PT5M49.355S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "bgvbrnhtj_540x540_AACAudio_373.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "3.0",
+          "Width": "540",
+          "Height": "540",
+          "DisplayAspectRatioNumerator": 1.0,
+          "DisplayAspectRatioDenominator": 1.0,
+          "Framerate": 25.0,
+          "Bitrate": 373042,
+          "TargetBitrate": 500000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "und",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128004,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "bgvbrnhtj_540x540_AACAudio_373.mp4",
+      "Size": 22146439,
+      "Duration": "PT5M49.355S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "bgvbrnhtj_360x360_AACAudio_195.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "2.1",
+          "Width": "360",
+          "Height": "360",
+          "DisplayAspectRatioNumerator": 1.0,
+          "DisplayAspectRatioDenominator": 1.0,
+          "Framerate": 25.0,
+          "Bitrate": 195486,
+          "TargetBitrate": 300000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "und",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128004,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "bgvbrnhtj_360x360_AACAudio_195.mp4",
+      "Size": 14393483,
+      "Duration": "PT5M49.355S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "bgvbrnhtj_270x270_AACAudio_125.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "1.3",
+          "Width": "270",
+          "Height": "270",
+          "DisplayAspectRatioNumerator": 1.0,
+          "DisplayAspectRatioDenominator": 1.0,
+          "Framerate": 25.0,
+          "Bitrate": 125006,
+          "TargetBitrate": 160000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "und",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128004,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "bgvbrnhtj_270x270_AACAudio_125.mp4",
+      "Size": 11315966,
+      "Duration": "PT5M49.355S"
+    },
+    {
+      "Sources": [
+        {
+          "Name": "bgvbrnhtj_180x180_AACAudio_63.mp4"
+        }
+      ],
+      "VideoTracks": [
+        {
+          "Id": 1,
+          "FourCC": "avc1",
+          "Profile": "High",
+          "Level": "1.2",
+          "Width": "180",
+          "Height": "180",
+          "DisplayAspectRatioNumerator": 1.0,
+          "DisplayAspectRatioDenominator": 1.0,
+          "Framerate": 25.0,
+          "Bitrate": 63632,
+          "TargetBitrate": 100000,
+          "MesCodec": "avc1",
+          "MesEncodingComplexity": "Balanced"
+        }
+      ],
+      "AudioTracks": [
+        {
+          "Id": 2,
+          "Codec": "aac",
+          "Language": "und",
+          "Channels": 2,
+          "SamplingRate": 48000,
+          "Bitrate": 128004,
+          "MesCodec": "aac"
+        }
+      ],
+      "Name": "bgvbrnhtj_180x180_AACAudio_63.mp4",
+      "Size": 8636040,
+      "Duration": "PT5M49.355S"
+    }
+  ]
+}

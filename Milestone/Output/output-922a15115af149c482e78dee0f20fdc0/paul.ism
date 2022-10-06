@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="clientManifestRelativePath" content="paul.ismc" />
+    <meta name="formats" content="mp4-v3" />
+  </head>
+  <body>
+    <switch>
+      <audio src="paul_102x180_AACAudio_100.mp4" systemBitrate="128123" systemLanguage="und">
+        <param name="systemBitrate" value="128123" valuetype="data" />
+        <param name="trackID" value="2" valuetype="data" />
+        <param name="trackName" value="aac_und_2_128123_2_1" valuetype="data" />
+        <param name="systemLanguage" value="und" valuetype="data" />
+        <param name="trackIndex" value="paul_102x180_AACAudio_100_2.mpi" valuetype="data" />
+      </audio>
+      <video src="paul_202x360_AACAudio_300.mp4" systemBitrate="300920">
+        <param name="systemBitrate" value="300920" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="paul_202x360_AACAudio_300_1.mpi" valuetype="data" />
+      </video>
+      <video src="paul_152x270_AACAudio_160.mp4" systemBitrate="160706">
+        <param name="systemBitrate" value="160706" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="paul_152x270_AACAudio_160_1.mpi" valuetype="data" />
+      </video>
+      <video src="paul_102x180_AACAudio_100.mp4" systemBitrate="100589">
+        <param name="systemBitrate" value="100589" valuetype="data" />
+        <param name="trackID" value="1" valuetype="data" />
+        <param name="trackName" value="video" valuetype="data" />
+        <param name="trackIndex" value="paul_102x180_AACAudio_100_1.mpi" valuetype="data" />
+      </video>
+    </switch>
+  </body>
+</smil>
