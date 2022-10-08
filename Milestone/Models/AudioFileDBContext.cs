@@ -27,8 +27,6 @@ namespace DotNet5Crud.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<AudioFile>().Ignore(t => t.File);
-            
 
             // Model entity parses values
             modelBuilder.Entity<AudioFile>(entity =>

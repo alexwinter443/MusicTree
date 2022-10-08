@@ -56,7 +56,7 @@
                 <td>
                 <td class="text-center">
                     <a asp-action="Details" class="btn btn-info" asp-route-audioFileId="@item.AudioFileId">Details</a> 
-                    <a asp-action="AddOrEdit" class="btn btn-warning" asp-route-AudioFile="@item">Edit</a> 
+                    <a class="btn btn-warning" asp-action="AddOrEdit" asp-route-audioFileId="@item.AudioFileId">Edit</a>
                     <a asp-action="Delete" class="btn btn-danger" asp-route-audioFileId="@item.AudioFileId">Delete</a> 
 
                 </td
