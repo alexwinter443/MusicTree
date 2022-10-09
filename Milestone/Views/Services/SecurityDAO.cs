@@ -31,6 +31,43 @@ namespace Milestone.Views.Services
 {
     public class SecurityDAO
     {
+        public bool updateAudioFile(AudioFile audioFile)
+        {
+            bool success = true;
+            string sqlStatement = "Update dbo.AudioFiles SET Name = @Name, Genre = @Genre, BPM = @BPM, Description = @Description, [Key] = @Key1 WHERE AudioFileId = @Id";
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.Name;
+                command.Parameters.Add("@Genre", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.Genre;
+                command.Parameters.Add("@BPM", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.BPM;
+                command.Parameters.Add("@Description", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.Description;
+                command.Parameters.Add("@Key1", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.Key;
+                command.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.AudioFileId;
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    success = true;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return success;
+
+        }
+
+
+
+
+
 
         public bool deleteComment(int audioFileID)
         {

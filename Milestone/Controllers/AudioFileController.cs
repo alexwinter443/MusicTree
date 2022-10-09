@@ -124,6 +124,33 @@ namespace DotNet5Crud.Controllers
         }
 
 
+        public async Task<IActionResult> EditAudioOnly(int? audioFileId)
+        {
+            // passes values to form
+            ViewBag.PageName = audioFileId == null ? "Create Instrumental" : "Edit Instrumental";
+            ViewBag.IsEdit = audioFileId == null ? false : true;
+            // if audiofile id is empty
+            if (audioFileId == null)
+            {
+                return View();
+            }
+
+            else
+            {
+                // fetch audio file associated with ID
+                var audioFile = await _context.AudioFiles.FindAsync(audioFileId);
+
+                // if audiofile does not exists
+                if (audioFile == null)
+                {
+                    return NotFound();
+                }
+                //else return view associated with audikofile
+                return View(audioFile);
+            }
+        }
+
+
         [DisableRequestSizeLimit]
         [HttpPost]
         public async Task<IActionResult> AddOrEdit2(int? audioFileId, IFormCollection formCollection, IFormFile file)
@@ -158,7 +185,7 @@ namespace DotNet5Crud.Controllers
                 audioFile.FileName = Request.Form["filename"];
                 audioFile.Key = Request.Form["Key"];
                 //audioFile.File = file;
-                //audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
+                audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
                 audioFile.FK_audioID = userID1;
                 audioFile.filepath = "";
 
@@ -249,135 +276,35 @@ namespace DotNet5Crud.Controllers
 
             //return View(audioFile);
         }
-
 
 
         [DisableRequestSizeLimit]
         [HttpPost]
-        public async Task<IActionResult> AddOrEdit3(int? audioFileId, IFormCollection formCollection, IFormFile file)
+        public async Task<IActionResult> EditAudioOnly(int? audioFileId, IFormCollection formCollection, IFormFile file)
         {
             int userID1 = (int)HttpContext.Session.GetInt32("userID");
 
-            // sets bool to false
-            bool IsAudioFileExist = false;
-            // creates audiofile class
-            AudioFile audioFile = await _context.AudioFiles.FindAsync(audioFileId);
+            AudioFile audioFile = new AudioFile();
 
-            // if audio file does not exist set bool to true
-            if (audioFile != null)
+            audioFile.Name = Request.Form["Name"];
+            audioFile.Description = Request.Form["Description"];
+            audioFile.BPM = Request.Form["BPM"];
+            audioFile.Genre = Request.Form["Genre"];
+            audioFile.FileName = Request.Form["filename"];
+            audioFile.Key = Request.Form["Key"];
+            audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
+
+            SecurityService securityService = new SecurityService();
+            if (securityService.updateAudioFile(audioFile))
             {
-                IsAudioFileExist = true;
+                return RedirectToAction(nameof(Index));
             }
-            // if audiofile does not exist create one
             else
             {
-                audioFile = new AudioFile();
+                return NotFound();
             }
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            // if the model is valid
-
-            try
-            {
-                // sets values of audiofile
-                audioFile.Name = Request.Form["Name"];
-                audioFile.Description = Request.Form["Description"];
-                audioFile.BPM = Request.Form["BPM"];
-                audioFile.Genre = Request.Form["Genre"];
-                audioFile.FileName = Request.Form["filename"];
-                audioFile.Key = Request.Form["Key"];
-                audioFile.File = file;
-                //audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
-                audioFile.FK_audioID = userID1;
-                audioFile.filepath = "";
-
-
-                // update audio file
-                if (IsAudioFileExist)
-                {
-                    _context.Update(audioFile);
-                }
-                // create audiofile
-                else
-                {
-                    _context.Add(audioFile);
-
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files");
-
-                    //create folder if not exist
-                    if (!Directory.Exists(path))
-                        Directory.CreateDirectory(path);
-
-                    //get file extension
-                    FileInfo fileInfo = new FileInfo(audioFile.Name);
-                    // creates filename for our mp4
-                    string fileName = "a" + fileInfo.Extension;
-                    // self describing
-                    string fileNameWithPath = Path.Combine(path, fileName);
-
-                    using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
-                    {
-                        audioFile.File.CopyTo(stream);
-
-                    }
-
-                    try
-                    {
-                        DotEnv.Load(".env");
-                    }
-                    catch
-                    {
-
-                    }
-
-                    ConfigWrapper config = new(new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                        .AddEnvironmentVariables() // parses the values from the optional .env file at the solution root
-                        .Build());
-
-                    try
-                    {
-                        await NewMethod(config);
-                    }
-
-                    catch (Exception exception)
-                    {
-                        if (exception.Source.Contains("ActiveDirectory"))
-                        {
-                            Console.Error.WriteLine("TIP: Make sure that you have filled out the appsettings.json file before running this sample.");
-                        }
-
-                        Console.Error.WriteLine($"{exception.Message}");
-
-                        if (exception.GetBaseException() is ErrorResponseException apiException)
-                        {
-                            Console.Error.WriteLine(
-                                $"ERROR: API call failed with error code '{apiException.Body.Error.Code}' and message '{apiException.Body.Error.Message}'.");
-                        }
-                    }
-
-
-                    Task NewMethod(ConfigWrapper config)
-                    {
-                        return RunAsync(config, fileNameWithPath, OutputFolderName, audioFile);
-                    }
-
-                    //audioFileData.IsSuccess = true;
-                    //audioFileData.Message = "File upload successfully";
-
-
-                }
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                throw;
-            }
-            return RedirectToAction(nameof(Index));
-
-            //return View(audioFile);
+        
         }
-
 
 
 

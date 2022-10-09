@@ -42,5 +42,10 @@ namespace Milestone.Views.Services
         {
             return SecurityDAO.deleteComment(audioFileID);
         }
+
+        public bool updateAudioFile(AudioFile audioFile)
+        {
+            return SecurityDAO.updateAudioFile(audioFile);
+        }
     }
 }
