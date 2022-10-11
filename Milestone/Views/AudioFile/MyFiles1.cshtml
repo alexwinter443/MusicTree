@@ -56,14 +56,15 @@
                 </td>
                 <td>
                 <td class="text-center">
-                    <a asp-action="AddOrEdit" class="btn btn-primary"  asp-route-audioFileId ="@item.AudioFileId">Edit</a>
-                </td>
-                <td class="text-center">
                     <a asp-action="Details" class="btn btn-info" asp-route-audioFileId="@item.AudioFileId">Details</a> 
                 </td>
                 <td class="text-center">
+                    <a asp-action="EditAudioOnly" class="btn btn-warning"  asp-route-audioFileId ="@item.AudioFileId">Edit</a>
+                </td>            
+                <td class="text-center">
                     <a asp-action="Delete" class="btn btn-danger" asp-route-audioFileId ="@item.AudioFileId">Delete</a>
                 </td>
+                   
             </tr>
             }
         </tbody>

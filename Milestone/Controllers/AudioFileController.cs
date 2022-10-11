@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Threading;
+using Microsoft.WindowsAzure.MediaServices.Client;
 
 namespace DotNet5Crud.Controllers
 {
@@ -91,8 +92,8 @@ namespace DotNet5Crud.Controllers
             int id1 = (int)HttpContext.Session.GetInt32("userID");
             SecurityService securityserv = new SecurityService();
             List<AudioFile> newfiles = securityserv.GetAudioFiles(id1);
-
             return View(newfiles);
+
         }
 
 
@@ -155,6 +156,9 @@ namespace DotNet5Crud.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOrEdit2(int? audioFileId, IFormCollection formCollection, IFormFile file)
         {
+            SecurityService securityserv = new SecurityService();
+
+
             int userID1 = (int)HttpContext.Session.GetInt32("userID");
 
             // sets bool to false
@@ -184,8 +188,9 @@ namespace DotNet5Crud.Controllers
                 audioFile.Genre = Request.Form["Genre"];
                 audioFile.FileName = Request.Form["filename"];
                 audioFile.Key = Request.Form["Key"];
-                //audioFile.File = file;
-                audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
+                audioFile.File = file;
+                // audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
+                // 
                 audioFile.FK_audioID = userID1;
                 audioFile.filepath = "";
 
@@ -926,152 +931,55 @@ namespace DotNet5Crud.Controllers
 
 
 
-        //public async Task<List<AudioFile>> Edit(int id, bool like)
-        //{
-        //    var article = await _context.AudioFiles.FindAsync(id);
-        //    if (like)
-        //    {
-        //        article.NumberOfLikes++;
-        //    }
-        //    else
-        //    {
-        //        article.NumberOfDislikes++;
-        //    }
-        //    _context.Update(article);
-        //    await _context.SaveChangesAsync();
-        //    return _context.AudioFiles.ToList();
+        /*// Download the output asset of the specified job to a local folder.
+        static IAsset DownloadAssetToLocal(string jobId, string outputFolder)
+        {
+            // This method illustrates how to download a single asset.
+            // However, you can iterate through the OutputAssets
+            // collection, and download all assets if there are many.
 
-        //}
+            // Get a reference to the job.
+            IJob job = GetJob(jobId);
 
+            // Get a reference to the first output asset. If there were multiple
+            // output media assets you could iterate and handle each one.
+            IAsset outputAsset = job.OutputMediaAssets[0];
 
+            // Create a SAS locator to download the asset
+            IAccessPolicy accessPolicy = _context.AccessPolicies.Create("File Download Policy", TimeSpan.FromDays(30), AccessPermissions.Read);
+            ILocator locator = _context.Locators.CreateLocator(LocatorType.Sas, outputAsset, accessPolicy);
 
+            BlobTransferClient blobTransfer = new BlobTransferClient
+            {
+                NumberOfConcurrentTransfers = 20,
+                ParallelTransferThreadCount = 20
+            };
 
-        ////Add Or Edit Post Method
-        //[HttpPost]
-        //public async Task<IActionResult> AddOrEdit(int? audioFileId, IFormCollection formCollection, IFormFile file)
-        //{
-        //    int userID1 = (int)HttpContext.Session.GetInt32("userID");
+            var downloadTasks = new List<Task>();
+            foreach (IAssetFile outputFile in outputAsset.AssetFiles)
+            {
+                // Use the following event handler to check download progress.
+                outputFile.DownloadProgressChanged += DownloadProgress;
 
-        //    // sets bool to false
-        //    bool IsAudioFileExist = false;
-        //    // creates audiofile class
-        //    AudioFile audioFile = await _context.AudioFiles.FindAsync(audioFileId);
+                string localDownloadPath = Path.Combine(outputFolder, outputFile.Name);
 
-        //    // if audio file does not exist set bool to true
-        //    if (audioFile != null)
-        //    {
-        //        IsAudioFileExist = true;
-        //    }
-        //    // if audiofile does not exist create one
-        //    else
-        //    {
-        //        audioFile = new AudioFile();
-        //    }
-        //    var errors = ModelState.Values.SelectMany(v => v.Errors);
-        //    // if the model is valid
+                Console.WriteLine("File download path:  " + localDownloadPath);
 
-        //        try
-        //        {
-        //            // sets values of audiofile
-        //            audioFile.Name = formCollection["Name"];
-        //            audioFile.Genre = formCollection["Genre"];
-        //            audioFile.Key = formCollection["Key"];
-        //            audioFile.BPM = formCollection["BPM"];
-        //            audioFile.Description = formCollection["Description"];
-        //            audioFile.FileName = formCollection["FileName"];
-        //            audioFile.File = file;
-        //            audioFile.AudioFileId = audioFile.AudioFileId;
-        //            audioFile.FK_audioID = userID1;
-        //            audioFile.filepath = "";
+                downloadTasks.Add(outputFile.DownloadAsync(Path.GetFullPath(localDownloadPath), blobTransfer, locator, CancellationToken.None));
 
+                outputFile.DownloadProgressChanged -= DownloadProgress;
+            }
 
-        //            // update audio file
-        //           if(IsAudioFileExist)
-        //            {
+            Task.WaitAll(downloadTasks.ToArray());
 
-        //                _context.Update(audioFile);
-        //            }
-        //           // create audiofile
-        //            else
-        //            {
-        //                _context.Add(audioFile);
+            return outputAsset;
+        }
 
-        //                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files");
+        static void DownloadProgress(object sender, DownloadProgressChangedEventArgs e)
+        {
+            Console.WriteLine(string.Format("{0} % download progress. ", e.Progress));
+        }*/
 
-        //                //create folder if not exist
-        //                if (!Directory.Exists(path))
-        //                    Directory.CreateDirectory(path);
-
-        //                //get file extension
-        //                FileInfo fileInfo = new FileInfo(formCollection["FileName"]);
-        //                // creates filename for our mp4
-        //                string fileName = formCollection["FileName"] + fileInfo.Extension;
-        //                // self describing
-        //                string fileNameWithPath = Path.Combine(path, fileName);
-
-        //                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
-        //                {
-        //                    audioFile.File.CopyTo(stream);
-
-        //                }
-
-        //                try
-        //                {
-        //                    DotEnv.Load(".env");
-        //                }
-        //                catch
-        //                {
-
-        //                }
-
-        //                ConfigWrapper config = new(new ConfigurationBuilder()
-        //                    .SetBasePath(Directory.GetCurrentDirectory())
-        //                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-        //                    .AddEnvironmentVariables() // parses the values from the optional .env file at the solution root
-        //                    .Build());
-
-        //                try
-        //                {
-        //                    await NewMethod(config);
-        //                }
-
-        //                catch (Exception exception)
-        //                {
-        //                    if (exception.Source.Contains("ActiveDirectory"))
-        //                    {
-        //                        Console.Error.WriteLine("TIP: Make sure that you have filled out the appsettings.json file before running this sample.");
-        //                    }
-
-        //                    Console.Error.WriteLine($"{exception.Message}");
-
-        //                    if (exception.GetBaseException() is ErrorResponseException apiException)
-        //                    {
-        //                        Console.Error.WriteLine(
-        //                            $"ERROR: API call failed with error code '{apiException.Body.Error.Code}' and message '{apiException.Body.Error.Message}'.");
-        //                    }
-        //                }
-
-
-        //                Task NewMethod(ConfigWrapper config)
-        //                {
-        //                    return RunAsync(config, fileNameWithPath, OutputFolderName,audioFile);
-        //                }
-
-        //                //audioFileData.IsSuccess = true;
-        //                //audioFileData.Message = "File upload successfully";
-
-
-        //            }
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            throw;
-        //        }
-        //        return RedirectToAction(nameof(Index));
-
-        //    return View(audioFile);
-        //}
 
 
 

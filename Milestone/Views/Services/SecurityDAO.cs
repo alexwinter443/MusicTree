@@ -276,7 +276,8 @@ namespace Milestone.Views.Services
                                                               BPM = reader["BPM"].ToString(),
                                                               Description = reader["Description"].ToString(),
                                                               FileName = reader["Filename"].ToString(),
-                                                              filepath = reader["filepath"].ToString()
+                                                              filepath = reader["filepath"].ToString(),
+                                                              AudioFileId = Int32.Parse(reader["AudioFileId"].ToString())
                                                               });
                             
                         }
