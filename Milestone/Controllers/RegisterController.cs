@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Milestone.Models;
@@ -24,7 +25,7 @@ namespace Milestone.Controllers
     {
         public IActionResult Index()
         {
-            
+            HttpContext.Session.SetString("verified", "notverified");
             return View();
         }
 

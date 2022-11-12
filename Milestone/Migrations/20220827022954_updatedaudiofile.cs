@@ -6,7 +6,7 @@ namespace Milestone.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+           /* migrationBuilder.CreateTable(
                 name: "AudioFiles",
                 columns: table => new
                 {
@@ -22,7 +22,7 @@ namespace Milestone.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AudioFiles", x => x.AudioFileId);
-                });
+                });*/
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

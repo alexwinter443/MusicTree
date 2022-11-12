@@ -10,5 +10,7 @@ namespace Milestone.Models
 
         public int userID { get; set; }
 
+        public string liked { get; set; }
+
     }
 }

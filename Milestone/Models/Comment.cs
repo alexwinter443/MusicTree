@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string comment { get; set; }
         public int FK_AudioFileID { get; set; }
+        public int FK_userID { get; set; }
 
 
     }

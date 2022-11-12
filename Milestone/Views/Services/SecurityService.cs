@@ -1,4 +1,5 @@
 ﻿using DotNet5Crud.Models;
+using Microsoft.AspNetCore.Http;
 using Milestone.Models;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,11 @@ namespace Milestone.Views.Services
         public bool updateAudioFile(AudioFile audioFile)
         {
             return SecurityDAO.updateAudioFile(audioFile);
+        }
+
+        public void addFile(AudioFile audioFile)
+        {
+            //SecurityDAO.addFile(audioFile);
         }
     }
 }

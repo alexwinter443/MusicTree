@@ -21,14 +21,17 @@
                 
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
-                            <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                            </li>
+                         @if (Context.Session.GetString("verified") == "notverified") 
+                         { 
+          
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                                </li>
 
-                            <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
-                            </li>
-                           
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
+                                </li>
+                        }
                         @if (Context.Session.GetString("verified") == "verified")
                         {
 

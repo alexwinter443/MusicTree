@@ -21,7 +21,7 @@ namespace Milestone.Models
     public class UserModel
     {
         // for database storage
-        private int ID { get; set; }
+        public int ID { get; set; }
         [Required]
         [DisplayName(@"First Name")]
         public string firstName { get; set; }

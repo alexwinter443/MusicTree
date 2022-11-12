@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DotNet5Crud.Models.AudioFile>
+﻿<!DOCTYPE html>
+@model IEnumerable<DotNet5Crud.Models.AudioFile>
 
 @{
     ViewData["Title"] = "Index";
@@ -27,9 +28,11 @@
                 <th>
                     @Html.DisplayNameFor(model => model.BPM)
                 </th>
+                 <div class="overflow-hidden">
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
+                </div>
                 <th></th>
                 <th>Details</th>
             </tr>
@@ -50,9 +53,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.BPM)
                 </td>
+                 <div class="overflow-hidden">
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
+                </div>
                 <td>
                 <td class="text-center">
                     <a asp-action="Details" class="btn btn-info" asp-route-audioFileId="@item.AudioFileId">Details</a> 
@@ -65,4 +70,4 @@
             }
         </tbody>
     </table>
-    </div>
+</div>

@@ -30,14 +30,17 @@ namespace Milestone.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("DashUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int>("FK_audioID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
                         .HasMaxLength(250)
@@ -54,6 +57,15 @@ namespace Milestone.Migrations
                         .HasMaxLength(200)
                         .IsUnicode(false)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<string>("filepath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("outputassetname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AudioFileId");
 

@@ -27,10 +27,12 @@ namespace DotNet5Crud.Models
         public string BPM { get; set; }
         public string Description { get; set; }
         public string FileName { get; set; }
-
         public string filepath { get; set; }
-
         public int FK_audioID { get; set; }
+        public int likes { get; set; }
+
+        // azure details
+        public string outputassetname  { get; set; }
 
         [NotMapped]
         public IFormFile File { get; set; }

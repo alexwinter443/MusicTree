@@ -27,14 +27,17 @@ namespace Milestone.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear();   
-           
+            HttpContext.Session.Clear();
+            //HttpContext.Session.SetInt32("userID", 0);
+
+
             return RedirectToAction("Index", "Login");
         }
 
 
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -48,9 +51,6 @@ namespace Milestone.Controllers
             // if -1 was returned, that means the user was not found
             // otherwise, the value should be the userID
             int userID = security.loginUser(user);
-
-
-
 
             HttpContext.Session.SetString("verified", "none");
 

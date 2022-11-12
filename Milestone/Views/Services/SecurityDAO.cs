@@ -15,6 +15,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using DotNet5Crud.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+
 
 /*
  * Alex Vergara
@@ -31,6 +34,15 @@ namespace Milestone.Views.Services
 {
     public class SecurityDAO
     {
+        private readonly AudioFileDBContext _context;
+        
+        private const bool UseInteractiveAuth = false;
+        private const string AdaptiveStreamingTransformName = "MyTransformWithAdaptiveStreamingPreset";
+        // connection to our database
+        public string connectionStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        
+
+
         public bool updateAudioFile(AudioFile audioFile)
         {
             bool success = true;
@@ -65,10 +77,6 @@ namespace Milestone.Views.Services
         }
 
 
-
-
-
-
         public bool deleteComment(int audioFileID)
         {
             bool success = false;
@@ -95,11 +103,11 @@ namespace Milestone.Views.Services
             }
         }
 
-        public bool uploadComment(string comment, int audiofileid)
+        public bool uploadComment(string comment, int audiofileid, int userid)
         {
             bool success = false;
 
-            string sqlStatement = "INSERT INTO dbo.comments (comment, FK_AudioFileID) VALUES (@comment, @FK_AudioFileID)";
+            string sqlStatement = "INSERT INTO dbo.comments (comment, FK_AudioFileID,FK_userID) VALUES (@comment, @FK_AudioFileID,@FK_userID)";
 
             using (SqlConnection connection = new SqlConnection(connectionStr))
             {
@@ -108,6 +116,7 @@ namespace Milestone.Views.Services
                 //Define Values of placeholders in SQL Statement string
                 command.Parameters.Add("@comment", System.Data.SqlDbType.NVarChar, 50).Value = comment;
                 command.Parameters.Add("@FK_AudioFileID", System.Data.SqlDbType.NVarChar, 50).Value = audiofileid;
+                command.Parameters.Add("@FK_userID", System.Data.SqlDbType.NVarChar, 50).Value = userid;
 
                 try
                 {
@@ -153,7 +162,8 @@ namespace Milestone.Views.Services
                             {
                                 Id = (int)reader["Id"],
                                 comment = reader["comment"].ToString(),
-                                FK_AudioFileID = (int)reader["FK_AudioFileID"]
+                                FK_AudioFileID = (int)reader["FK_AudioFileID"],
+                                FK_userID = (int)reader["FK_userID"]
                                 
                             });
 
@@ -169,8 +179,7 @@ namespace Milestone.Views.Services
         }
 
 
-        // connection to our database
-        public string connectionStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+       
                  
         // this method is used to register a user
         public bool RegisterUser(UserModel user)

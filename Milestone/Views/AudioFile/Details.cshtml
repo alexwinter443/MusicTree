@@ -1,4 +1,5 @@
-﻿@model ViewModel
+﻿<!DOCTYPE html>
+@model ViewModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,15 +10,15 @@
 
 
 <div class="container p-3 my-3 border">
-    <h1>Audio File Details</h1>
+    <h1>@Model.audiofile.Name</h1>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+     @*   <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.audiofile.Name)
-        </dt>
-        <dd class="col-sm-10">
+        </dt>*@
+      @*  <dd class="col-sm-10">
             @Html.DisplayFor(model => model.audiofile.Name)
-        </dd>
+        </dd>*@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.audiofile.Genre)
         </dt>
@@ -42,28 +43,47 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.audiofile.Description)
         </dd>
+        <dt class="col-sm-2">
+            <p>Likes</p>
+        </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.audiofile.NumberOfLikes)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.audiofile.NumberOfDislikes)
+            @Html.DisplayFor(model => model.audiofile.likes)
         </dd>
 
-            <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="640" height="400" poster="poster.jpg" data-setup='{"nativeControlsForTouch": false}'> 
-                <source src="@Model.audiofile.filepath" type="application/vnd.ms-sstr+xml" />
+        <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="640" height="400" poster="poster.jpg" data-setup='{"nativeControlsForTouch": false}'> 
+            <source src="@Model.audiofile.filepath" type="application/vnd.ms-sstr+xml" />
             <p class="amp-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
             </p>
-        </video>
-        
+        </video>    
 
     </dl>
     <div>
-        <a class="btn btn-warning" asp-action="EditAudioOnly" asp-route-audioFileId="@Model.audiofile.AudioFileId">Edit</a>
+        <!--ACTIONS -->
         <a class="btn btn-danger" asp-action="Index">Back</a>
-    </div>
+        <a class="btn btn-primary" asp-action="DownloadFile" asp-route-audioFileId="@Model.audiofile.AudioFileId">Download</a>
 
+        @if (@Model.liked == "false" || @Model.liked == "")
+        {
+        <a class="btn btn-outline-primary" asp-action="LikeAudio" asp-route-audioFileId="@Model.audiofile.AudioFileId">Like</a>
+        }
+        else if(@Model.liked == "true")
+        {
+        <a class="btn btn-primary" asp-action="LikeAudio" asp-route-audioFileId="@Model.audiofile.AudioFileId">UnLike</a>
+        }
+    </div>
 </div>
+
+@*<div>
+    @if (@Model.liked == "false" || @Model.liked == "")
+    {
+        <a class="btn btn-outline-primary" asp-action="LikeAudio" asp-route-audioFileId="@Model.audiofile.AudioFileId">Like</a>
+    }
+    else if(@Model.liked == "true")
+    {
+         <a class="btn btn-primary" asp-action="LikeAudio" asp-route-audioFileId="@Model.audiofile.AudioFileId">UnLike</a>
+    }
+</div>*@
 
 
 <div class="container p-3 my-3 border" >
@@ -74,10 +94,9 @@
             <form method="post" action="uploadComment">
             <table>
             <tr>
+                @Html.Hidden("userid", @Model.userID)
                 <td><input type="text" id="comment" name="comment" /></td>
-             
-             @Html.HiddenFor(model => model.audiofile.AudioFileId)
-
+                    @Html.HiddenFor(model => model.audiofile.AudioFileId)
                 <td><input type="submit"  /></td>
             </tr>
             </table>
@@ -92,32 +111,42 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
+             @*   <th>
                     @Html.DisplayNameFor(model => model.comments[0].Id)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.comments[1].comment)
                 </th>
+          @*      <th>
+                    @Html.DisplayNameFor(model => model.comments[2].FK_AudioFileID)
+                </th>*@
+         @*       <th>
+                    @Html.DisplayNameFor(model => model.comments[3].FK_userID)
+                </th>*@
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.comments)
             {
             <tr>
-                <td>
+            @*    <td>
                     @Html.DisplayFor(modelItem => item.Id)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.comment)
                 </td>
-                 <td>
+             @*    <td>
                     @Html.DisplayFor(modelItem => item.FK_AudioFileID)
-                </td>
+                </td>*@
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.FK_userID)
+                </td>*@
 
+                @if(Model.userID == item.FK_userID){
                 <td class="text-center">
                     <a asp-action="deleteComment" class="btn btn-info" asp-route-audioFileId="@item.Id">Delete</a> 
                 </td>
-               
+                }
             </tr>
             }
         </tbody>
