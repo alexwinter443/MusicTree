@@ -5,11 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <link href="//amp.azure.net/libs/amp/1.0.0/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
 <script src= "//amp.azure.net/libs/amp/1.0.0/azuremediaplayer.min.js"></script>
 
 
-<div class="container p-3 my-3 border">
+<div class="container p-3 my-3 border2">
     <h1>@Model.audiofile.Name</h1>
     <hr />
     <dl class="row">
@@ -49,15 +50,32 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.audiofile.likes)
         </dd>
+            </dl>
+        
 
-        <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="640" height="400" poster="poster.jpg" data-setup='{"nativeControlsForTouch": false}'> 
-            <source src="@Model.audiofile.filepath" type="application/vnd.ms-sstr+xml" />
+        @if (Model.audiofile.fileformat == "mp3")
+        {
+            <div>
+                <img src = "@Model.audiofile.jpgassetname" />
+            @*<img src="https://res.cloudinary.com/dawmedia/image/fetch/c_fill,h_200,w_200/https://res.cloudinary.com/dawmedia/image/upload/v1669168300/olympic_flag.jpg" />*@
+            </div>
+            <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="500" height="10" poster="poster.jpg" data-setup='{"logo": { "enabled": false },"nativeControlsForTouch": false,"controls": true}'> 
+                <source src="@Model.audiofile.filepath" type="application/vnd.ms-sstr+xml" />
             <p class="amp-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
             </p>
         </video>    
+        }
+        else{
+        <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="500" height="400" poster="poster.jpg" data-setup='{"logo": { "enabled": false },"nativeControlsForTouch": false}'> 
+                <source src="@Model.audiofile.filepath" type="application/vnd.ms-sstr+xml" />
+            <p class="amp-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+            </p>
+        </video>  
+        }
 
-    </dl>
+
     <div>
         <!--ACTIONS -->
         <a class="btn btn-danger" asp-action="Index">Back</a>
@@ -104,8 +122,6 @@
             </div>
     </div>
 </div>
-
-
 
 <div class="table-responsive">
     <table class="table">

@@ -5,11 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.7.0" />
     <PackageReference Include="Azure.Messaging.EventGrid" Version="4.11.0" />
     <PackageReference Include="Azure.Messaging.EventHubs" Version="5.7.3" />
     <PackageReference Include="Azure.Messaging.EventHubs.Processor" Version="5.7.2" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
     <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.3" />
     <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.3" />
@@ -37,6 +46,7 @@
     <PackageReference Include="NuGet.Packaging" Version="6.2.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="windowsazure.mediaservices" Version="4.2.0" />
   </ItemGroup>
 
@@ -44,6 +54,10 @@
     <Folder Include="Output\" />
     <Folder Include="Utility\" />
     <Folder Include="wwwroot\Files\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
 </Project>

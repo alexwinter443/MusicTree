@@ -1,5 +1,5 @@
 ﻿@model DotNet5Crud.Models.AudioFile
-
+@*@model CombinedModel*@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,7 +22,6 @@
                 <div>
                     <input type="hidden" asp-for="AudioFileId" />
                 </div>
-
 
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
@@ -61,6 +60,13 @@
                     <input asp-for="File" class="form-control" />
                     <span asp-validation-for="File" class="text-danger"></span>
                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label">Select File</label>
+                    <input asp-for="File2" name="file2" class="form-control" />
+                    <span asp-validation-for="File2" class="text-danger"></span>
+                 </div>
+             
 
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="Save" />

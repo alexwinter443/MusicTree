@@ -29,10 +29,10 @@ namespace Milestone.Models
         [Required]
         [DisplayName(@"Last Name")]
         public string lastName { get; set; }
-
+        [Required]
         [DisplayName(@"Gender")]
         public string gender { get; set; }
-
+        [Required]
         [DisplayName(@"Age")]
         public int age { get; set; }
 

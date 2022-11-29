@@ -20,6 +20,9 @@ using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Hosting;
 using System.Runtime.InteropServices;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using System.Net.Http;
 
 namespace DotNet5Crud.Controllers
 {
@@ -53,7 +56,7 @@ namespace DotNet5Crud.Controllers
 
             client = await Authentication.CreateMediaServicesClientAsync(config, UseInteractiveAuth);
 
-            await AudioDAO.DownloadOutputAssetAsync(client, "capstoneresourcegroup","capstoneservices", audiofile.outputassetname, securityDAO.downloadsPath);
+            await AudioDAO.DownloadOutputAssetAsync(client, "capstoneresourcegroup","capstoneservices", audiofile.outputassetname, securityDAO.downloadsPath, audiofile.Name);
             return RedirectToAction("Index", "AudioFile");
 
         }
@@ -62,7 +65,6 @@ namespace DotNet5Crud.Controllers
         [HttpPost]
         public async Task<IActionResult> uploadComment(string comment, AudioFile audioFile, int userid)
         {
-            int obj = userid;
 
             SecurityDAO securityDAO = new SecurityDAO();
 
@@ -112,14 +114,12 @@ namespace DotNet5Crud.Controllers
         }
 
 
-
         public async Task<IActionResult> MyFiles1()
         {
             int id1 = (int)HttpContext.Session.GetInt32("userID");
             SecurityService securityserv = new SecurityService();
             List<AudioFile> newfiles = securityserv.GetAudioFiles(id1);
             return View(newfiles);
-
         }
      
 
@@ -133,6 +133,9 @@ namespace DotNet5Crud.Controllers
             // if audiofile id is empty
             if (audioFileId == null)
             {
+                /* MultipleFilesModel model = new MultipleFilesModel();
+                 return View(model);*/
+         
                 return View();
             }
             
@@ -140,7 +143,7 @@ namespace DotNet5Crud.Controllers
             {
                 // fetch audio file associated with ID
                 var audioFile = await _context.AudioFiles.FindAsync(audioFileId);
-
+                
                 // if audiofile does not exists
                 if (audioFile == null)
                 {
@@ -160,6 +163,8 @@ namespace DotNet5Crud.Controllers
             // if audiofile id is empty
             if (audioFileId == null)
             {
+               /* CombinedModel model = new CombinedModel();
+                return View(model);*/
                 return View();
             }
 
@@ -179,38 +184,56 @@ namespace DotNet5Crud.Controllers
         }
 
 
-        public async Task<IActionResult> LikeAudio(int audioFileId)
-        {
-            int id1 = (int)HttpContext.Session.GetInt32("userID");
-            AudioDAO audioDAO = new AudioDAO();
-
-            
-
-
-            // passes in userID, and audioFileID
-            if (audioDAO.toggleLike(id1, audioFileId))
-            {
-                return RedirectToAction("Index", "AudioFile");
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
-     
-
-
 
         [DisableRequestSizeLimit]
         [HttpPost]
-        public async Task<IActionResult> AddOrEdit2(IFormCollection formCollection, IFormFile file)
+        public async Task<IActionResult> AddOrEdit2(IFormCollection formCollection, IFormFile file, IFormFile file2)
         {
             SecurityService securityserv = new SecurityService();
 
             int userID1 = (int)HttpContext.Session.GetInt32("userID");
 
             AudioFile audioFile = new AudioFile();
+
+            Account account = new Account(
+                "dawmedia",
+                "948836387591992",
+                "39ghSoIH3vubnAu35VZnL7tqxh8");
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            HttpClient client = new HttpClient();
+            var formContent = new MultipartFormDataContent();
+
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files");
+
+            //create folder if not exist
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            //get file extension
+           // FileInfo fileInfo = new FileInfo(file2.FileName);
+            // creates filename for our mp4
+            string fileName = file2.FileName;
+            // self describing
+            string fileNameWithPath = Path.Combine(path, fileName);
+            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            {
+                file2.CopyTo(stream);
+
+
+            }
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(fileNameWithPath),
+                PublicId = file2.FileName
+            };
+
+            var uploadResult2 = cloudinary.Upload(uploadParams);
+
+            var res = "https://res.cloudinary.com/dawmedia/image/fetch/c_scale,h_400,w_500/" + uploadResult2.Url;
 
             try
             {
@@ -222,9 +245,16 @@ namespace DotNet5Crud.Controllers
                 audioFile.FileName = Request.Form["filename"];
                 audioFile.Key = Request.Form["Key"];
                 audioFile.File = file;
+                audioFile.File2 = file2;
                 audioFile.FK_audioID = userID1;
                 audioFile.filepath = "";
                 audioFile.likes = 0;
+                audioFile.jpgassetname = res;
+                //     string hello2 = file.FileName;
+                // gets extension of file mp3 or mp4
+                audioFile.fileformat = file.FileName.Substring(file.FileName.Length - 3);
+                
+
                 //var idasd = Request.Form[""];
                 //audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
 
@@ -234,7 +264,7 @@ namespace DotNet5Crud.Controllers
 
                 //audioFile.AudioFileId = Int32.Parse(Request.Form["AudioFileId"].ToString());
 
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files");
+                path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Files");
 
                 //create folder if not exist
                 if (!Directory.Exists(path))
@@ -243,9 +273,9 @@ namespace DotNet5Crud.Controllers
                 //get file extension
                 FileInfo fileInfo = new FileInfo(audioFile.Name);
                 // creates filename for our mp4
-                string fileName = "a" + fileInfo.Extension;
+                fileName = "b" + fileInfo.Extension;
                 // self describing
-                string fileNameWithPath = Path.Combine(path, fileName);
+                fileNameWithPath = Path.Combine(path, fileName);
 
                 using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
                 {
@@ -268,7 +298,7 @@ namespace DotNet5Crud.Controllers
                     .AddEnvironmentVariables() // parses the values from the optional .env file at the solution root
                     .Build());
 
-                
+
 
                 try
                 {
@@ -354,6 +384,25 @@ namespace DotNet5Crud.Controllers
         }
 
 
+        public async Task<IActionResult> LikeAudio(int audioFileId)
+        {
+            int id1 = (int)HttpContext.Session.GetInt32("userID");
+            AudioDAO audioDAO = new AudioDAO();
+
+            SecurityService securityserv = new SecurityService();
+
+            // passes in userID, and audioFileID
+            if (audioDAO.toggleLike(id1, audioFileId))
+            {
+                return RedirectToAction("Index", "AudioFile");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
         // Audio File Details
         public async Task<IActionResult> Details(int? audioFileId)
         {
@@ -388,8 +437,11 @@ namespace DotNet5Crud.Controllers
                 userID = userID1,
                 liked = getStatus,
             };
+
             return View(combinedModel);
         }
+
+
 
         // GET: audioFiles/Delete/1
         public async Task<IActionResult> Delete(int? audioFileId)

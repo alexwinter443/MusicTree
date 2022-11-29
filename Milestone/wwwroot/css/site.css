@@ -28,7 +28,7 @@ a {
 -------------------------------------------------- */
 html {
     font-size: 14px;
-    background-color: #a7a5c3;
+    /*background-color: #a7a5c3; */
 }
 @media (min-width: 768px) {
   html {
@@ -57,13 +57,13 @@ button.accept-policy {
 html {
     position: relative;
     min-height: 100%;
-    background-color: #a7a5c3;
+    /*background-color: #a7a5c3; */
 }
 
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: #a7a5c3;
+    background-color: #eff0fe;
 }
 .footer {
   position: absolute;
@@ -73,7 +73,18 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-background {
-    background-color: #a7a5c3;
+.container p-3 my-3 border2 {
+    background-color: #f6b7b7;
+    color: #f6b7b7;
 }
+
+container p-3 my-3 border2 {
+    background-color: #f6b7b7;
+    color: #f6b7b7;
+}
+
+/*background {
+    background-color: #a7a5c3;
+}*/
+
 

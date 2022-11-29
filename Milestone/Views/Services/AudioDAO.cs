@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using Azure.Identity;
 using Microsoft.ServiceBus.Messaging;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace Milestone.Views.Services
 {
@@ -27,457 +29,9 @@ namespace Milestone.Views.Services
         // connection to our database
         public string connectionStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string CustomTransform = "Custom_H264_3Layer";
+        private const string InputMP4FileName = @"blackscreen3.mp4";
+        private const string jpginput = @"mouseresized.jpg";
 
-        private const string OverlayFileName = @"cloud.png";
-        private const string OverlayLabel = @"logo";
-
-
-        public bool deleteComment(int commentId)
-        {
-            bool executed = false;
-            string sqlStatement = "DELETE * FROM dbo.comments WHERE Id = @Id";
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
-                cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = commentId;
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    executed = true;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                };
-            }
-            return executed;
-        }
-
-
-
-        public UserModel getUser(int userId)
-        {
-            string sqlStatement = "SELECT * FROM dbo.users WHERE Id = @Id";
-
-            UserModel newAudioFiles = new UserModel();
-
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
-                cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = userId;
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            /* newAudioFiles. = Int32.Parse(reader["AudioFileId"].ToString());
-                             newAudioFiles.Name = reader["Name"].ToString();
-                             newAudioFiles.outputassetname = reader["OutputAssetName"].ToString();
- */
-                        }
-
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                };
-            }
-            return newAudioFiles;
-        }
-
-
-        // this method is used to find if the like item exists in our database.
-        public string getLikeStatus(int userId, int audioFileId)
-        {
-            // send userID up through layers
-            string liked = "";
-
-            // prepared statements for increased security
-            string sqlStatement = "SELECT * FROM dbo.Likes WHERE FK_userId = @Id and FK_audioId = @FK_userId";
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
-
-                // define values of placeholders
-                cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = userId;
-                cmd.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            return (string)reader.GetValue(3);
-                           
-                        }
-                    }
-                    else
-                    {
-                        createLikeObject(audioFileId, userId);
-                        reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            return (string)reader.GetValue(3);
-
-                        }
-                    }
-                }
-                // possiblly add like creation method here
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                };
-            }
-            return liked;
-        }
-
-
-        public bool doesrowexist(int userId, int audioFileId)
-        {
-            string sqlStatement = "SELECT COUNT(*) FROM dbo.Likes WHERE FK_userId = @FK_userId AND FK_audioId = @FK_audioId";
-
-            bool success = false;
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = userId;
-                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
-
-                try
-                {
-                    
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            success = true;
-                            //newAudioFiles.AudioFileId = Int32.Parse(reader["AudioFileId"].ToString());
-                            //newAudioFiles.Name = reader["Name"].ToString();
-                            //newAudioFiles.outputassetname = reader["OutputAssetName"].ToString();
-
-                        }
-
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            return success;
-        }
-
-        public int getNumberOfLikes(int audioFileId)
-        {
-            string sqlStatement = "Select likes from dbo.AudioFiles WHERE AudioFileId = @audioFileId";
-
-            int result = 0;
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-                command.Parameters.Add("@audioFileId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
-                try
-                {
-                    connection.Open();
-                    result = (int)command.ExecuteScalar();
-                    
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            return result;
-        }
-
-
-
-
-        public bool increaseLikeCounter(int audioFileId)
-        {
-            string sqlStatement = "Update dbo.AudioFiles SET likes = @likes + 1 WHERE AudioFileId = @FK_audioId";
-
-            bool success = true;
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-                //Define Values of placeholders in SQL Statement string
-                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
-
-                // get number of likes inject method
-
-                int resultofLikes = getNumberOfLikes(audioFileId);
-
-                
-                command.Parameters.Add("@likes", System.Data.SqlDbType.NVarChar, 50).Value = resultofLikes;
-
-                try
-                {
-                    connection.Open();
-                    command.ExecuteScalar();
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-
-            return success; 
-        }
-
-
-
-        public bool decreaseLikeCounter(int audioFileId)
-        {
-            string sqlStatement = "Update dbo.AudioFiles SET likes = @likes - 1 WHERE AudioFileId = @FK_audioId";
-
-            bool success = true;
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-                //Define Values of placeholders in SQL Statement string
-                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
-
-                // get number of likes inject method
-                int resultofLikes = getNumberOfLikes(audioFileId);
-
-                command.Parameters.Add("@likes", System.Data.SqlDbType.NVarChar, 50).Value = resultofLikes;
-
-                try
-                {
-                    connection.Open();
-                    command.ExecuteScalar();
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-
-            return success;
-        }
-
-
-
-
-        // userID, and Ai
-        public bool toggleLike(int userid, int audioFileId)
-        {
-            string sqlStatement = "Update dbo.Likes SET liked = @liked WHERE FK_audioId = @FK_AudioId AND FK_userId = @FK_userId";
-
-            bool success = false;
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-
-                //Define Values of placeholders in SQL Statement string
-                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
-                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = userid;
-
-                //gets likestatus
-                string liked = getLikeStatus(userid, audioFileId);
-
-                if(liked == "true")
-                {
-                    // inject like counter --
-                    decreaseLikeCounter(audioFileId);
-                    
-
-                    command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "false";
-                }
-                else if(liked == "")
-                {
-                    increaseLikeCounter(audioFileId);
-
-
-                    command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "true";
-                }
-                else
-                {
-                    // inject like counter ++
-                    increaseLikeCounter(audioFileId);
-
-
-                    command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "true";
-                }
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    success = true;
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            return success;
-            
-        }
-
-
-        public bool createLikeObject(int audioFileID, int id)
-        {
-            bool success = false;
-            string sqlStatement = "INSERT INTO dbo.Likes (FK_userId, FK_audioId, liked) VALUES (@FK_userId,@FK_audioId,@liked)";
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-
-                //Define Values of placeholders in SQL Statement string
-                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = id;
-                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileID;
-                command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "false";
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    success = true;
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            return success;
-
-        }
-
-        public bool createLikeObjectTrue(int audioFileID, int id)
-        {
-            bool success = false;
-            string sqlStatement = "INSERT INTO dbo.Likes (FK_userId, FK_audioId, liked) VALUES (@FK_userId,@FK_audioId,@liked)";
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-
-                //Define Values of placeholders in SQL Statement string
-                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = id;
-                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileID;
-                command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "false";
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    success = true;
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            return success;
-
-        }
-
-
-
-        public bool updateAudioFile(AudioFile audioFile)
-        {
-            bool success = true;
-            string sqlStatement = "Update dbo.AudioFiles SET OutputAssetName = @Name, accountname = @account, resourcegroup = @group WHERE AudioFileId = @Id";
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-
-
-
-                //Define Values of placeholders in SQL Statement string
-                command.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.outputassetname;
-                command.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.AudioFileId;
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    success = true;
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            return success;
-
-        }
-
-
-        public AudioFile GetAudioFileAsync(int id)
-        {
-
-            string sqlStatement = "SELECT * FROM dbo.AudioFiles WHERE AudioFileId = @Id";
-
-            AudioFile newAudioFile = new AudioFile();
-
-            using (SqlConnection connection = new SqlConnection(connectionStr))
-            {
-                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
-
-                // define values of placeholders
-                cmd.Parameters.Add("@Id", System.Data.SqlDbType.Int, 50).Value = id;
-
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            newAudioFile.AudioFileId = Int32.Parse(reader["AudioFileId"].ToString());
-                            newAudioFile.Name = reader["Name"].ToString();
-                            newAudioFile.outputassetname = reader["OutputAssetName"].ToString();                                            
-
-                        }
-                       
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                };
-            }
-            return newAudioFile;
-
-        }
 
 
 
@@ -506,29 +60,10 @@ namespace Milestone.Views.Services
                   new TransformOutput(
                         new StandardEncoderPreset(
                            
-                            //overlays image ontop of video
-                            filters: new Filters
-                            {
-                                Overlays = new List<Overlay>
-                                {
-                                    new VideoOverlay
-                                    {
-                                        InputLabel = OverlayLabel,   // same as the one used in the JobInput to identify which asset is the overlay image
-                                        Position = new Rectangle( "1200","670"), // left, top position of the overlay in absolute pixel position relative to the source videos resolution. 
-                                        // Percentage based settings are coming soon, but not yet supported. In the future you can set this to "90%","90%" for example to be resolution independent on the source video positioning.
-                                        // Opacity = 0.25  // opacity can be adjusted on the overlay.
-                                    }
-                                }
-                            },
-
                             codecs: new Codec[]
                             {
                                 // Add an AAC Audio layer for the audio encoding
                                 new AacAudio(
-                                    //channels: 2,
-                                    //samplingRate: 48000,
-                                    //bitrate: 128000,
-                                    //profile: AacAudioProfile.AacLc
                                 ),
                                 // Next, add a H264Video for the video encoding
                                new H264Video (
@@ -539,41 +74,26 @@ namespace Milestone.Views.Services
                                     layers:  new List<H264Layer>
                                     {
                                         new H264Layer (
-                                            profile: H264VideoProfile.Baseline,
+                                            profile: H264VideoProfile.Auto,
                                             bitrate: 1000000, // Units are in bits per second and not kbps or Mbps - 3.6 Mbps or 3,600 kbps
                                             width: "1280",
-                                            height: "720"                                        
+                                            height: "720",
+                                            level: "auto",
+                                            adaptiveBFrame: true
+                                            
                                         ),
                                         new H264Layer (
-                                            profile: H264VideoProfile.Baseline,
+                                            profile: H264VideoProfile.Auto,
                                             bitrate: 600000, // Units are in bits per second and not kbps or Mbps - 1.6 Mbps or 1600 kbps
                                             width: "480",
-                                            height: "720"                                   
-                                        ),                                    
+                                            height: "720",
+                                            level: "auto",
+                                            adaptiveBFrame: true
+                                        ),
                                     }
-                                    //layers:  new H264Layer[]
-                                    //{
-                                    //    new H264Layer (
-                                    //        bitrate: 3600000, // Units are in bits per second and not kbps or Mbps - 3.6 Mbps or 3,600 kbps
-                                    //        width: "1280",
-                                    //        height: "720",
-                                    //        label: "HD-3600kbps" // This label is used to modify the file name in the output formats
-                                    //    ),
-                                    //    new H264Layer (
-                                    //        bitrate: 1600000, // Units are in bits per second and not kbps or Mbps - 1.6 Mbps or 1600 kbps
-                                    //        width: "960",
-                                    //        height: "540",
-                                    //        label: "SD-1600kbps" // This label is used to modify the file name in the output formats
-                                    //    ),
-                                    //    new H264Layer (
-                                    //        bitrate: 600000, // Units are in bits per second and not kbps or Mbps - 0.6 Mbps or 600 kbps
-                                    //        width: "640",
-                                    //        height: "360",
-                                    //        label: "SD-600kbps" // This label is used to modify the file name in the output formats
-                                    //    ),
-                                    //}
+                                  
                                 ),
-                              
+
                             },
                             // Specify the format for the output files - one for video+audio, and another for the thumbnails
                             formats: new Format[]
@@ -585,12 +105,9 @@ namespace Milestone.Views.Services
                                 new Mp4Format(
                                     filenamePattern:"Video-{Basename}-{Label}-{Bitrate}{Extension}"
                                 )
-                                //new PngFormat(
-                                //    filenamePattern:"Thumbnail-{Basename}-{Index}{Extension}"
-                                //)
                             }
-                            
-                      
+
+
                         ),
                         onError: OnErrorType.StopProcessingJob,
                         relativePriority: Priority.Normal
@@ -606,34 +123,6 @@ namespace Milestone.Views.Services
             return transform;
         }
         #endregion EnsureTransformExists
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         public enum KnownFolder
@@ -674,8 +163,6 @@ namespace Milestone.Views.Services
 
 
 
-
-
         /// <summary>
         /// Run the sample async.
         /// </summary>
@@ -701,6 +188,8 @@ namespace Milestone.Views.Services
                 return;
             }
 
+
+
             // Set the polling interval for long running operations to 2 seconds.
             // The default value is 30 seconds for the .NET client SDK
             client.LongRunningOperationRetryTimeout = 50;
@@ -713,7 +202,11 @@ namespace Milestone.Views.Services
             string outputAssetName = $"output-{uniqueness}";
             string inputAssetName = $"input-{uniqueness}";
             string logoAssetName = $"logo-{uniqueness}";
+            string inputAssetName2 = $"input-2-{uniqueness}";
+            string inputAssetNamejpg = $"input-3-{uniqueness}";
             audiofileData.outputassetname = outputAssetName;
+            
+            
             bool stopEndpoint = false;
 
 
@@ -724,22 +217,46 @@ namespace Milestone.Views.Services
             _ = await AudioDAO.GetOrCreateTransformAsync(client, config.ResourceGroup, config.AccountName, AdaptiveStreamingTransformName);
 
             // Create a new input Asset and upload the specified local video file into it.
-            _ = await AudioDAO.CreateInputAssetAsync(client, config.ResourceGroup, config.AccountName, inputAssetName, mp4name);
-
-            //_ = await AudioDAO.CreateInputAssetAsync(client, config.ResourceGroup, config.AccountName, logoAssetName, OverlayFileName);
-
-            Asset overlayImageAsset = await CreateInputAssetAsync(client, config.ResourceGroup, config.AccountName, logoAssetName, OverlayFileName);
+            Asset inputAsset1 = await CreateInputAssetAsync(client, config.ResourceGroup, config.AccountName, inputAssetName, mp4name);
 
 
+            // Create a second input Asset and upload the 2nd specified local video file into it.
+            Asset inputAsset2 = await CreateInputAssetAsync(client, config.ResourceGroup, config.AccountName, inputAssetName2, InputMP4FileName);
 
+            // create third input asset and upload jpg into it.
+            Asset inputAssetjpg = await CreateInputAssetAsync(client, config.ResourceGroup, config.AccountName, inputAssetNamejpg, jpginput);
 
-            // Use the name of the created input asset to create the job input.
-            _ = new JobInputAsset(assetName: inputAssetName);
 
             // Output from the encoding Job must be written to an Asset, so let's create one
             Asset outputAsset = await AudioDAO.CreateOutputAssetAsync(client, config.ResourceGroup, config.AccountName, outputAssetName);
 
-            _ = await AudioDAO.SubmitJobAsync(client, config.ResourceGroup, config.AccountName, AdaptiveStreamingTransformName, jobName, inputAssetName, outputAsset.Name, overlayImageAsset.Name);
+     
+          
+
+
+            // Create a Job Input Sequence with the two assets to stitch together
+            JobInputSequence inputSequence = new(
+                inputs: new JobInputAsset[]{
+                        new JobInputAsset(
+                            assetName: inputAsset1.Name,
+                            start: new AbsoluteClipTime(new TimeSpan(0, 0, 0)),
+                            //end: new AbsoluteClipTime(new TimeSpan(0, 0, 10)),
+                            label:"Bumper"
+                        ),
+                        new JobInputAsset(
+                            assetName: inputAsset2.Name,
+                            start: new AbsoluteClipTime(new TimeSpan(0, 0, 0)),
+                            //end: new AbsoluteClipTime(new TimeSpan(0, 0, 10)),
+                            label:"Main"
+
+                        )
+
+
+                }
+            );
+
+
+            _ = await AudioDAO.SubmitJobAsync(client, config.ResourceGroup, config.AccountName, AdaptiveStreamingTransformName, jobName, inputAssetName, outputAsset.Name, inputSequence, inputAssetjpg.Name);
 
 
 
@@ -833,6 +350,9 @@ namespace Milestone.Views.Services
             // that was created by calling Asset's CreateOrUpdate method.  
             BlobContainerClient container = new BlobContainerClient(sasUri);
             BlobClient blob = container.GetBlobClient(Path.GetFileName(fileToUpload));
+            
+            //var uploadOptions = new BlobUploadOptions();
+
 
             // Use Strorage API to upload the file into the container in storage.
             await blob.UploadAsync(fileToUpload);
@@ -976,13 +496,15 @@ namespace Milestone.Views.Services
             string jobName,
             string inputAssetName,
             string outputAssetName,
-            string overlayAssetName)
+            JobInputSequence inputSequence,
+            string inputAssetNamejpg)
         {
             // Use the name of the created input asset to create the job input.
             List<JobInput> jobInputs = new List<JobInput>()
             {
                 new JobInputAsset(assetName: inputAssetName),
-                new JobInputAsset(assetName: overlayAssetName, label: OverlayLabel)
+                
+                
             };
 
             JobOutput[] jobOutputs =
@@ -1155,7 +677,8 @@ namespace Milestone.Views.Services
             string resourceGroup,
             string accountName,
             string assetName,
-            string outputFolderName)
+            string outputFolderName,
+            string audioFilename)
         {
             if (!Directory.Exists(outputFolderName))
             {
@@ -1172,7 +695,7 @@ namespace Milestone.Views.Services
             Uri containerSasUrl = new Uri(assetContainerSas.AssetContainerSasUrls.FirstOrDefault());
             BlobContainerClient container = new BlobContainerClient(containerSasUrl);
 
-            string directory = Path.Combine(outputFolderName, assetName);
+            string directory = Path.Combine(outputFolderName, audioFilename);
             Directory.CreateDirectory(directory);
 
             Console.WriteLine($"Downloading output results to '{directory}'...");
@@ -1245,6 +768,477 @@ namespace Milestone.Views.Services
             }
         }
         // </CleanUp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public bool deleteComment(int commentId)
+        {
+            bool executed = false;
+            string sqlStatement = "DELETE * FROM dbo.comments WHERE Id = @Id";
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
+                cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = commentId;
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    executed = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                };
+            }
+            return executed;
+        }
+
+
+
+        public UserModel getUser(int userId)
+        {
+            string sqlStatement = "SELECT * FROM dbo.users WHERE Id = @Id";
+
+            UserModel newAudioFiles = new UserModel();
+
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
+                cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = userId;
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            /* newAudioFiles. = Int32.Parse(reader["AudioFileId"].ToString());
+                             newAudioFiles.Name = reader["Name"].ToString();
+                             newAudioFiles.outputassetname = reader["OutputAssetName"].ToString();
+ */
+                        }
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                };
+            }
+            return newAudioFiles;
+        }
+
+
+        // this method is used to find if the like item exists in our database.
+        public string getLikeStatus(int userId, int audioFileId)
+        {
+            // send userID up through layers
+            string liked = "";
+
+            // prepared statements for increased security
+            string sqlStatement = "SELECT * FROM dbo.Likes WHERE FK_userId = @Id and FK_audioId = @FK_userId";
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
+
+                // define values of placeholders
+                cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = userId;
+                cmd.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            return (string)reader.GetValue(3);
+
+                        }
+                    }
+                    else
+                    {
+                        createLikeObject(audioFileId, userId);
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            return (string)reader.GetValue(3);
+
+                        }
+                    }
+                }
+                // possiblly add like creation method here
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                };
+            }
+            return liked;
+        }
+
+
+        public bool doesrowexist(int userId, int audioFileId)
+        {
+            string sqlStatement = "SELECT COUNT(*) FROM dbo.Likes WHERE FK_userId = @FK_userId AND FK_audioId = @FK_audioId";
+
+            bool success = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = userId;
+                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
+
+                try
+                {
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            success = true;
+                            //newAudioFiles.AudioFileId = Int32.Parse(reader["AudioFileId"].ToString());
+                            //newAudioFiles.Name = reader["Name"].ToString();
+                            //newAudioFiles.outputassetname = reader["OutputAssetName"].ToString();
+
+                        }
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return success;
+        }
+
+        public int getNumberOfLikes(int audioFileId)
+        {
+            string sqlStatement = "Select likes from dbo.AudioFiles WHERE AudioFileId = @audioFileId";
+
+            int result = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.Add("@audioFileId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
+                try
+                {
+                    connection.Open();
+                    result = (int)command.ExecuteScalar();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return result;
+        }
+
+
+
+
+        public bool increaseLikeCounter(int audioFileId)
+        {
+            string sqlStatement = "Update dbo.AudioFiles SET likes = @likes + 1 WHERE AudioFileId = @FK_audioId";
+
+            bool success = true;
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
+
+                // get number of likes inject method
+
+                int resultofLikes = getNumberOfLikes(audioFileId);
+
+
+                command.Parameters.Add("@likes", System.Data.SqlDbType.NVarChar, 50).Value = resultofLikes;
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteScalar();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+
+            return success;
+        }
+
+
+
+        public bool decreaseLikeCounter(int audioFileId)
+        {
+            string sqlStatement = "Update dbo.AudioFiles SET likes = @likes - 1 WHERE AudioFileId = @FK_audioId";
+
+            bool success = true;
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
+
+                // get number of likes inject method
+                int resultofLikes = getNumberOfLikes(audioFileId);
+
+                command.Parameters.Add("@likes", System.Data.SqlDbType.NVarChar, 50).Value = resultofLikes;
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteScalar();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            return success;
+        }
+
+
+
+
+        // userID, and Ai
+        public bool toggleLike(int userid, int audioFileId)
+        {
+            string sqlStatement = "Update dbo.Likes SET liked = @liked WHERE FK_audioId = @FK_AudioId AND FK_userId = @FK_userId";
+
+            bool success = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileId;
+                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = userid;
+
+                //gets likestatus
+                string liked = getLikeStatus(userid, audioFileId);
+
+                if (liked == "true")
+                {
+                    // inject like counter --
+                    decreaseLikeCounter(audioFileId);
+
+
+                    command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "false";
+                }
+                else if (liked == "")
+                {
+                    increaseLikeCounter(audioFileId);
+
+
+                    command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "true";
+                }
+                else
+                {
+                    // inject like counter ++
+                    increaseLikeCounter(audioFileId);
+
+
+                    command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "true";
+                }
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    success = true;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return success;
+
+        }
+
+
+        public bool createLikeObject(int audioFileID, int id)
+        {
+            bool success = false;
+            string sqlStatement = "INSERT INTO dbo.Likes (FK_userId, FK_audioId, liked) VALUES (@FK_userId,@FK_audioId,@liked)";
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = id;
+                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileID;
+                command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "false";
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    success = true;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return success;
+
+        }
+
+        public bool createLikeObjectTrue(int audioFileID, int id)
+        {
+            bool success = false;
+            string sqlStatement = "INSERT INTO dbo.Likes (FK_userId, FK_audioId, liked) VALUES (@FK_userId,@FK_audioId,@liked)";
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@FK_userId", System.Data.SqlDbType.NVarChar, 50).Value = id;
+                command.Parameters.Add("@FK_audioId", System.Data.SqlDbType.NVarChar, 50).Value = audioFileID;
+                command.Parameters.Add("@liked", System.Data.SqlDbType.NVarChar, 50).Value = "false";
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    success = true;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return success;
+
+        }
+
+
+
+        public bool updateAudioFile(AudioFile audioFile)
+        {
+            bool success = true;
+            string sqlStatement = "Update dbo.AudioFiles SET OutputAssetName = @Name, accountname = @account, resourcegroup = @group WHERE AudioFileId = @Id";
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+
+
+                //Define Values of placeholders in SQL Statement string
+                command.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.outputassetname;
+                command.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar, 50).Value = audioFile.AudioFileId;
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    success = true;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return success;
+
+        }
+
+
+        public AudioFile GetAudioFileAsync(int id)
+        {
+
+            string sqlStatement = "SELECT * FROM dbo.AudioFiles WHERE AudioFileId = @Id";
+
+            AudioFile newAudioFile = new AudioFile();
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                SqlCommand cmd = new SqlCommand(sqlStatement, connection);
+
+                // define values of placeholders
+                cmd.Parameters.Add("@Id", System.Data.SqlDbType.Int, 50).Value = id;
+
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            newAudioFile.AudioFileId = Int32.Parse(reader["AudioFileId"].ToString());
+                            newAudioFile.Name = reader["Name"].ToString();
+                            newAudioFile.outputassetname = reader["OutputAssetName"].ToString();
+
+                        }
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                };
+            }
+            return newAudioFile;
+
+        }
+
+
+
+
+
+
 
 
 
