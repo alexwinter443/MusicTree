@@ -32,7 +32,10 @@
 
 ## MusicTree was deployed to Azure but had to be taken down for because it was costing to much.
 
-### Project Diagrams
+# Project Diagrams
+
+## High Level Design Diagram
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/68a8869f-44ea-4da2-8562-0bebc6521a53)
 
 
 
