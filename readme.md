@@ -16,6 +16,10 @@
 # Edit Instrumental
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/35180314-5afc-4ca5-bc59-a798b6de131e)
 
+# Create Instrumental
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/06c260e7-054f-48ac-b47c-5dc741e825af)
+
+
 
 # Requirements
 ## Functional Requirement for MusicTree:
