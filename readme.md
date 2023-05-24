@@ -28,7 +28,17 @@
 
 thats true
 
->yezzir
+> I wanted to create a functional app before I used React for my front-end. React will be used after I finished the backend environment.
+
+## Object Oriented programming (OOP) and MVC architecture was used to create a balanced environment.
+
+## MusicTree was deployed to Azure but had to be taken down for because it was costing to much.
+
+### Project Diagrams
+
+
+
+
 
 
 
