@@ -37,6 +37,15 @@
 ## High Level Design Diagram
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/e909c7cb-b344-4b99-aac0-ed424ababd7b)
 
+### The Front end of Music Tree is built using Custom CSS and Bootstrap.
+
+### The Backend uses C# and the ASP.NET framework.
+
+### MusicTree is hosted on Azure (edit: no longer on azure due to cost)
+
+## Logical Diagram
+
+
 
 
 
