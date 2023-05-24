@@ -7,7 +7,12 @@
 # Home Page
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/b1c7e1cb-9d74-4f04-9093-2c8959194326)
 
+# Track page
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/25944a78-6d13-42ef-9bb6-cebbe4f46a14)
+
+# Manage Tracks
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/08ece2d1-7631-4996-9a90-e9213d760b33)
+
 
 
 # Requirements
