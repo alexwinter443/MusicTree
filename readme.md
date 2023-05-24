@@ -56,6 +56,24 @@
 
 ## What I learned
 
+### Gained a complex understanding of the C# programmning language.
+### Cloud Development: Dived into cloud development researching different cloud providers and implementing cloud services in app.
+### Uploading and streaming music: learned azure
+### Project Management: gained experience in managing products under tight time constraints.
+
+## Risks and Challenges
+
+### Cloud Service Costs: need to monitor spending weekly
+
+### Time Constraints: given a semester to develop this application
+
+### User Experience and design: not much time given to use a frontend framework
+
+## Outstanding Issues
+
+### The only issue I came across was cost on azure services. It became to expensive to keep it hosted so I had to take it down.
+
+
 
 
 
