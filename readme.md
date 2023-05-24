@@ -1,4 +1,4 @@
-# This is the Repository for Alex Vergara's MusicTree project.
+# This is the Repository for Alex's MusicTree project.
 
 ## MusicTree is a Digital Music Streaming Service that gives users access to songs from artists across the world
 
@@ -10,6 +10,8 @@
 
 ### 1. Users can login and register
 
-### 2. A User can add a track
+### 2. Users can add tracks.
+
+### 3. 
 
 
