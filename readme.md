@@ -35,7 +35,8 @@
 # Project Diagrams
 
 ## High Level Design Diagram
-![image](https://github.com/alexwinter443/MusicTree/assets/59127575/dc5f098a-ddb1-4403-85ce-e382b71eba7d)
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/defd1795-bd60-4086-8527-9a4791dc0fc4)
+
 
 
 
