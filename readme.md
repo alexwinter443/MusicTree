@@ -63,6 +63,17 @@
 
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/8f9c37a8-5f46-4d17-9b0c-6ed819abdfbe)
 
+## UML Diagram
+
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/cd71a166-25b3-4e49-9ca6-8f2c844d622d)
+
+### Since I am utilizing ASP.NET I am also adapting to the MVC framework. 
+### We have a total of 7 expected models that we will utilize to have a functional web application. 
+### The cornerstone of our project will be the UserModel and AudioFile since they need to be passed to the controller and DAO.
+### Interfaces will also be utilized so we can reduce redundant code and allow development to proceed without hinderance.
+
+
+
 ### •	This is the physical solution design of our application. This depicts the flow of storing and distributing mp3 files for users.
 ### •	Media source files are delivered using MPEG-DASH. (essentially a streaming protocol that breaks down data into chunks at different quality levels).
 ### •	Dynamic packaging reduces storage costs and space.
