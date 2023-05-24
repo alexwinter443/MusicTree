@@ -9,6 +9,9 @@
 
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/25944a78-6d13-42ef-9bb6-cebbe4f46a14)
 
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/293226d8-45b4-480d-99e9-2bd0d74c213a)
+
+
 # Requirements
 ## Functional Requirement for MusicTree:
 
