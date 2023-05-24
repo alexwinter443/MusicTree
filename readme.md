@@ -2,7 +2,7 @@
 
 ## MusicTree is a Digital Music Streaming Service that gives users access to songs from artists across the world
 
-### *Musicians and producers often have a hard time getting their music heard. I myself find it hard to get any views on my music and platforms such as youtube or soundcloud are oversaturated. For my Capstone I wanted to create an app where a community of musicians can showcase their work.*  
+### *Musicians and producers often have a hard time getting their music heard. I myself find it hard to get any views on my music and platforms such as youtube or soundcloud are oversaturated. For my Capstone I created an app where a community of musicians can showcase their work and gain more attention.*  
 
 
 # Requirements
