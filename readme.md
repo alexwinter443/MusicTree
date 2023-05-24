@@ -26,8 +26,6 @@
 
 # BeatsTree is built using C#, ASP.NET, BOOTSTRAP and AZURE
 
-thats true
-
 > I wanted to create a functional app before I used React for my front-end. React will be used after I finished the backend environment.
 
 ## Object Oriented programming (OOP) and MVC architecture was used to create a balanced environment.
