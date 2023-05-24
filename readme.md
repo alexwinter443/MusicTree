@@ -6,12 +6,28 @@
 
 
 # Requirements
-## Here are some of the functional requirements I set for MusicTree:
+## Functional Requirement for MusicTree:
 
 ### 1. Users can login and register
 
 ### 2. Users can add tracks.
 
-### 3. 
+### 3. Users can stream music on phone or pc
+
+### 4. Musicians can edit or delete tracks
+
+### 5. Users can like or comment on tracks
+
+## Non-functional Requirements for MusicTree
+
+### user friendly and modern design
+
+### fast response rate
+
+# BeatsTree is built using C#, ASP.NET, BOOTSRAP and AZURE
+
+
+
+
 
 
