@@ -46,7 +46,7 @@
 
 ## Object Oriented programming (OOP) and MVC architecture was used to create a balanced environment.
 
-## MusicTree was deployed to Azure but had to be taken down for because it was costing to much.
+## MusicTree was deployed to Azure.
 
 # Project Diagrams
 
