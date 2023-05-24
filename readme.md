@@ -47,6 +47,14 @@
 
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/8f9c37a8-5f46-4d17-9b0c-6ed819abdfbe)
 
+## •	This is the physical solution design of our application. As we can see, we have several processes that depict the flow of storing and distributing mp3 files for users 
+## •	We deliver our media source files to users using MPEG-DASH. This is essentially a streaming protocol that breaks down data into chunks at different quality levels. 
+## •	From here I implemented a front-end for our user to utilize the cloud streaming service. 
+## •	Likewise, we use dynamic packaging to reduce the amount of copies packaged in blob storage. This will help alleviate storage costs and reduce amount of audio content stored.
+## •	In media services a Streaming Endpoint is used as the origin service that can deliver content directly to a client player. It is a regular method used for streaming content.
+## •	An Advantage to this is that we can dynamically filter and modify assets without having to re-encode o re-render content.
+## •	Keys and tokens will also be utilized so we can deliver content to the appropriate user with appropriate permissions.
+
 
 
 
