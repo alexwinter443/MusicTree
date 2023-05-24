@@ -7,6 +7,7 @@
 # Home Page
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/b1c7e1cb-9d74-4f04-9093-2c8959194326)
 
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/aad7420e-5808-45a5-babf-5112b6378837)
 
 # Requirements
 ## Functional Requirement for MusicTree:
