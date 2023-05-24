@@ -45,6 +45,7 @@
 
 ## Logical Diagram
 
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/8f9c37a8-5f46-4d17-9b0c-6ed819abdfbe)
 
 
 
