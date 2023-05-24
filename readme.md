@@ -24,7 +24,9 @@
 
 ### fast response rate
 
-# BeatsTree is built using C#, ASP.NET, BOOTSRAP and AZURE
+# BeatsTree is built using C#, ASP.NET, BOOTSTRAP and AZURE
+
+thats true
 
 
 
