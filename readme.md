@@ -13,6 +13,8 @@
 # Manage Tracks
 ![image](https://github.com/alexwinter443/MusicTree/assets/59127575/08ece2d1-7631-4996-9a90-e9213d760b33)
 
+# Edit Instrumental
+![image](https://github.com/alexwinter443/MusicTree/assets/59127575/35180314-5afc-4ca5-bc59-a798b6de131e)
 
 
 # Requirements
